@@ -152,6 +152,17 @@
     outline: none;
   }
 
+  /* Visible focus indicator for keyboard navigation */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  /* Remove focus outline for mouse/touch users */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
   /* Selection */
   ::selection {
     @apply bg-primary/20 text-foreground;

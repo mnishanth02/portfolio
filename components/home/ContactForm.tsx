@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/form";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Loader2, CheckCircle, XCircle } from "lucide-react";
+import { trackContactFormSubmitted } from "@/lib/analytics";
 
 /**
  * ContactForm Component
@@ -47,6 +48,7 @@ export function ContactForm() {
         // Check honeypot
         if (data.website) {
             setIsSubmitting(false);
+            trackContactFormSubmitted(false, "Honeypot triggered");
             return; // Silently fail for spam
         }
 
@@ -66,11 +68,12 @@ export function ContactForm() {
 
             setSubmitStatus("success");
             form.reset();
+            trackContactFormSubmitted(true);
         } catch (error) {
+            const errorMsg = error instanceof Error ? error.message : "Failed to send message";
             setSubmitStatus("error");
-            setErrorMessage(
-                error instanceof Error ? error.message : "Failed to send message",
-            );
+            setErrorMessage(errorMsg);
+            trackContactFormSubmitted(false, errorMsg);
         } finally {
             setIsSubmitting(false);
         }
@@ -111,26 +114,26 @@ export function ContactForm() {
 
                 {/* Message Field */ }
                 <FormField
-                    control={form.control}
+                    control={ form.control }
                     name="message"
-                    render={({ field }) => (
+                    render={ ({ field }) => (
                         <FormItem>
                             <div className="flex items-center justify-between mb-2">
                                 <FormLabel>Message *</FormLabel>
                                 <span className="text-xs text-muted-foreground tabular-nums">
-                                    {field.value?.length || 0} / 5000 characters
+                                    { field.value?.length || 0 } / 5000 characters
                                 </span>
                             </div>
                             <FormControl>
                                 <Textarea
                                     placeholder="Tell me about your project or inquiry... Feel free to include detailed information about your goals, timeline, and technical requirements."
-                                    rows={8}
-                                    {...field}
+                                    rows={ 8 }
+                                    { ...field }
                                 />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
-                    )}
+                    ) }
                 />
 
                 {/* Honeypot Field (hidden) */ }

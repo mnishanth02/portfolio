@@ -19,7 +19,7 @@ export function Hero() {
     return (
         <section
             id="hero"
-            className="min-h-screen flex items-center justify-center px-4 py-20"
+            className="min-h-screen flex items-center justify-center px-4 "
         >
             <div className="container mx-auto max-w-6xl">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -85,7 +85,7 @@ export function Hero() {
                                 className="rounded-full object-cover border-4 border-primary/20 shadow-2xl"
                             />
                             {/* Decorative gradient circle */ }
-                            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem] bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur-3xl" />
+                            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 md:w-96 md:h-96 lg:w-md lg:h-112 bg-linear-to-r from-primary/20 to-accent/20 rounded-full blur-3xl" />
                         </div>
                     </div>
                 </div>

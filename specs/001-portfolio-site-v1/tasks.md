@@ -298,23 +298,23 @@
 
 ### Accessibility & WCAG Compliance
 
-- [ ] T136 [P] Add alt text to all images (empty alt="" for decorative images) (FR-050)
-- [ ] T137 [P] Verify semantic HTML structure (header, nav, main, article, section, aside, footer) (FR-051)
-- [ ] T138 [P] Verify heading hierarchy (single h1, no skipped levels) (FR-052)
-- [ ] T139 Test keyboard navigation for all interactive elements with visible focus indicators (FR-053)
+- [X] T136 [P] Add alt text to all images (empty alt="" for decorative images) (FR-050)
+- [X] T137 [P] Verify semantic HTML structure (header, nav, main, article, section, aside, footer) (FR-051)
+- [X] T138 [P] Verify heading hierarchy (single h1, no skipped levels) (FR-052)
+- [X] T139 Test keyboard navigation for all interactive elements with visible focus indicators (FR-053)
 - [ ] T140 Run axe DevTools accessibility audit and fix all WCAG AA violations
 - [ ] T141 Verify color contrast meets 4.5:1 for normal text, 3:1 for large text (FR-054)
 - [ ] T142 Test screen reader compatibility with NVDA or VoiceOver
-- [ ] T143 Add skip-to-content link for keyboard users
+- [X] T143 Add skip-to-content link for keyboard users
 
 ### Performance Optimization & Testing
 
 - [ ] T144 [P] Run Lighthouse audit on all pages (home, blog listing, blog post, project page)
-- [ ] T145 Optimize bundle size - remove unused dependencies and code
-- [ ] T146 Enable Next.js compression and optimize build output
+- [X] T145 Optimize bundle size - remove unused dependencies and code
+- [X] T146 Enable Next.js compression and optimize build output
 - [ ] T147 Verify Core Web Vitals: LCP <2.5s, FID <100ms, CLS <0.1 (FR-033 to FR-035)
 - [ ] T148 Test site performance on slow 3G connection
-- [ ] T149 Verify static generation for all routes (check .next/server output)
+- [X] T149 Verify static generation for all routes (check .next/server output)
 
 ### Cross-Browser Testing
 
@@ -326,13 +326,13 @@
 
 ### SEO & Analytics
 
-- [ ] T155 [P] Verify all pages have unique meta titles and descriptions (FR-044, FR-045)
+- [X] T155 [P] Verify all pages have unique meta titles and descriptions (FR-044, FR-045)
 - [ ] T156 [P] Verify OpenGraph tags work correctly (test with Facebook Sharing Debugger)
 - [ ] T157 [P] Verify Twitter Card tags work correctly (test with Twitter Card Validator)
-- [ ] T158 Verify sitemap.xml is generated correctly with all pages
-- [ ] T159 Verify robots.txt allows crawling
-- [ ] T160 Test PostHog analytics tracking (page views, custom events)
-- [ ] T161 Add custom PostHog events: project_viewed, blog_post_viewed, contact_form_submitted, resume_downloaded, social_link_clicked
+- [X] T158 Verify sitemap.xml is generated correctly with all pages
+- [X] T159 Verify robots.txt allows crawling
+- [X] T160 Test PostHog analytics tracking (page views, custom events)
+- [X] T161 Add custom PostHog events: project_viewed, blog_post_viewed, contact_form_submitted, resume_downloaded, social_link_clicked
 
 ### Content Quality
 

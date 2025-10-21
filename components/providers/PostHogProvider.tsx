@@ -2,7 +2,32 @@
 
 import posthog from "posthog-js";
 import { PostHogProvider as PHProvider } from "posthog-js/react";
-import { useEffect, type PropsWithChildren } from "react";
+import { useEffect, type PropsWithChildren, Suspense } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+
+/**
+ * PageView Tracker Component
+ * Handles pageview tracking with search params
+ * Must be wrapped in Suspense due to useSearchParams()
+ */
+function PageViewTracker() {
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+
+    useEffect(() => {
+        if (pathname && posthog) {
+            let url = window.origin + pathname;
+            if (searchParams?.toString()) {
+                url = `${url}?${searchParams.toString()}`;
+            }
+            posthog.capture("$pageview", {
+                $current_url: url,
+            });
+        }
+    }, [pathname, searchParams]);
+
+    return null;
+}
 
 /**
  * PostHog Analytics Provider
@@ -28,5 +53,12 @@ export function PostHogProvider({ children }: PropsWithChildren) {
         }
     }, []);
 
-    return <PHProvider client={ posthog }>{ children }</PHProvider>;
+    return (
+        <PHProvider client={ posthog }>
+            <Suspense fallback={ null }>
+                <PageViewTracker />
+            </Suspense>
+            { children }
+        </PHProvider>
+    );
 }
