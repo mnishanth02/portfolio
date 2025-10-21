@@ -348,20 +348,20 @@
 
 ### Error Handling & Edge Cases
 
-- [ ] T171 [P] Test contact form with invalid inputs (empty fields, invalid email, short message)
-- [ ] T172 Test contact form with honeypot filled (spam detection)
-- [ ] T173 Test contact form submission failure (Resend API error) - verify fallback mailto: link
-- [ ] T174 Test YouTube video embeds when videos are unavailable or deleted
-- [ ] T175 Test empty state for blog listing page (no posts yet)
-- [ ] T176 Test empty state for projects section (no projects yet)
-- [ ] T177 Test 404 page by navigating to non-existent URL
+- [X] T171 [P] Test contact form with invalid inputs (empty fields, invalid email, short message)
+- [X] T172 Test contact form with honeypot filled (spam detection)
+- [X] T173 Test contact form submission failure (Resend API error) - verify fallback mailto: link
+- [X] T174 Test YouTube video embeds when videos are unavailable or deleted
+- [X] T175 Test empty state for blog listing page (no posts yet)
+- [X] T176 Test empty state for projects section (no projects yet)
+- [X] T177 Test 404 page by navigating to non-existent URL
 - [ ] T178 Test JavaScript disabled scenario - verify core content is visible
 
 ### Documentation & Deployment Prep
 
-- [ ] T179 [P] Update README.md with project overview, tech stack, and local setup instructions
-- [ ] T180 [P] Verify quickstart.md is accurate and up-to-date
-- [ ] T181 [P] Create or update CHANGELOG.md documenting feature completion
+- [X] T179 [P] Update README.md with project overview, tech stack, and local setup instructions
+- [X] T180 [P] Verify quickstart.md is accurate and up-to-date
+- [X] T181 [P] Create or update CHANGELOG.md documenting feature completion
 - [ ] T182 Set up Vercel project and connect GitHub repository
 - [ ] T183 Configure environment variables in Vercel dashboard (RESEND_API_KEY, NEXT_PUBLIC_POSTHOG_KEY, etc.)
 - [ ] T184 Set up custom domain in Vercel (if applicable)

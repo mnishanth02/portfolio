@@ -3,7 +3,7 @@
 **Purpose**: Get the portfolio website running locally for development in under 5 minutes.
 
 **Prerequisites**:
-- Node.js 18+ installed ([download](https://nodejs.org/))
+- **Bun** (recommended) or Node.js 18+ installed ([bun.sh](https://bun.sh/) or [nodejs.org](https://nodejs.org/))
 - Git installed ([download](https://git-scm.com/))
 - Code editor (VS Code recommended)
 - GitHub account (for deployment)
@@ -17,7 +17,10 @@
 git clone https://github.com/username/portfolio.git
 cd portfolio
 
-# Install dependencies
+# Install dependencies (using Bun - recommended)
+bun install
+
+# Or using npm
 npm install
 
 # Copy environment variables template
@@ -58,6 +61,10 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ## 3. Start Development Server (30 seconds)
 
 ```bash
+# Using Bun (recommended)
+bun run dev
+
+# Or using npm
 npm run dev
 ```
 

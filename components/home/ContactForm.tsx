@@ -177,7 +177,15 @@ export function ContactForm() {
                     <Alert className="border-red-500 bg-red-50 dark:bg-red-950">
                         <XCircle className="h-4 w-4 text-red-600 dark:text-red-400" />
                         <AlertDescription className="text-red-800 dark:text-red-200">
-                            { errorMessage || "Failed to send message. Please try again or email me directly." }
+                            <p className="mb-2">
+                                { errorMessage || "Failed to send message. Please try again or contact me directly." }
+                            </p>
+                            <a
+                                href={ `mailto:nishanth.murugan@gmail.com?subject=Contact from Portfolio&body=${encodeURIComponent(form.getValues("message") || "")}` }
+                                className="text-red-700 dark:text-red-300 underline hover:text-red-900 dark:hover:text-red-100"
+                            >
+                                Send via email instead →
+                            </a>
                         </AlertDescription>
                     </Alert>
                 ) }
