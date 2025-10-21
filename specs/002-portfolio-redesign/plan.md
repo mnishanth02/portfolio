@@ -1,11 +1,26 @@
 # Implementation Plan: Portfolio Redesign - Vertical Scroll Reduction
 
-**Branch**: `002-portfolio-redesign` | **Date**: 2025-10-21 | **Spec**: [spec.md](./spec.md)
+**Branch**: `002-portfolio-redesign` | **Date**: 2025-10-21 | **Updated**: 2025-10-21 (Post-Analysis) | **Spec**: [spec.md](./spec.md)
 **Input**: Feature specification from `/specs/002-portfolio-redesign/spec.md`
+**Project Type**: **BROWNFIELD REFACTORING** - Modifying existing components, NOT creating from scratch
 
 ## Summary
 
-This plan implements a comprehensive homepage redesign to reduce vertical scroll by 50-60% (~3000-3800px) while maintaining Lighthouse 95+ performance and WCAG AA accessibility. The redesign introduces 6 major features across 3 phases: dual timeline layout, tabbed skills interface, horizontal article carousel, bento grid for projects, tabbed videos, and engineering philosophy relocation. All components follow React Server Component architecture where possible, with selective client-side interactivity using Next.js 15 App Router patterns.
+This plan implements a comprehensive homepage REFACTORING to reduce vertical scroll by 50-60% (~3000-3800px) while maintaining Lighthouse 95+ performance and WCAG AA accessibility. The redesign MODIFIES 6 existing components to implement: dual timeline layout, tabbed skills interface, horizontal article carousel, bento grid for projects, tabbed videos, and engineering philosophy relocation. All components follow React Server Component architecture where possible, with selective client-side interactivity using Next.js 15 App Router patterns.
+
+**CRITICAL CONTEXT**: Components already exist in `components/home/` directory:
+- Timeline.tsx (single alternating → needs dual-column redesign)
+- Skills.tsx (card grid → needs tabbed interface)
+- Blog.tsx (vertical grid → needs horizontal carousel + rename to Articles.tsx)
+- Projects.tsx (client component → needs server component conversion + bento grid)
+- Videos.tsx (simple grid → needs tabbed categories)
+
+**Constitution Violations to Fix**:
+1. Projects.tsx uses `'use client'` with useEffect - MUST refactor to Server Component
+2. Mock data embedded in Projects.tsx - MUST extract to lib/projects.ts
+3. Missing ARIA labels on all sections - MUST add
+4. Incomplete JSDoc comments - MUST add comprehensive documentation
+5. Inconsistent spacing (mb-16 vs py-20) - MUST standardize to py-16
 
 ## Technical Context
 
@@ -91,48 +106,55 @@ This plan implements a comprehensive homepage redesign to reduce vertical scroll
 
 **Gate Status**: ✅ **PASS** - All constitutional requirements aligned. No violations to justify.
 
-## Phase 6: Implementation - Videos Component
+## Phase 6: Implementation - Videos Component REFACTORING
 
 **Estimated Time**: 5-6 hours
 **Dependencies**: Phase 1 complete
-**Priority**: P2 (Important)
+**Priority**: P3 (Nice-to-have)
+**Current State**: `components/home/Videos.tsx` exists with simple grid layout
+**Target State**: Tabbed interface with Running/Coding/Talks categories
 
 ### Scope
 
-Implement tabbed video gallery with 3 categories (Running, Coding, Talks).
+**REFACTOR** existing Videos.tsx to add tabbed categories.
 
 ### Tasks
 
-1. **Create Videos Data** (1h)
+1. **Reorganize Videos Data** (1h)
    - File: `lib/constants.ts`
-   - Define video arrays for each category (4-6 videos per category)
-   - Include: title, youtubeId, duration, publishedAt, category
-   - Thumbnail URLs: Auto-generate from `https://i.ytimg.com/vi/{youtubeId}/hqdefault.jpg`
+   - **REFACTOR**: Split existing videos array into 3 category arrays
+   - Categories: running, coding, talks (4-6 videos per category)
+   - Ensure data structure includes: title, youtubeId, duration, publishedAt, category
+   - Verify thumbnail URLs: `https://i.ytimg.com/vi/{youtubeId}/hqdefault.jpg`
 
-2. **Build Videos Wrapper (RSC)** (30m)
-   - File: `components/home/Videos.tsx`
-   - Server Component wrapper
-   - Fetch static video data
-   - Pass to client component
+2. **Refactor Videos Wrapper** (30m)
+   - File: **RENAME** `components/home/Videos.tsx` to `VideosWrapper.tsx`
+   - Keep as Server Component wrapper
+   - Update to fetch categorized video data
+   - Pass to new VideoTabs client component
 
-3. **Build VideoTabs Component (Client)** (2h)
-   - File: `components/home/VideoTabs.tsx`
+3. **Create VideoTabs Component** (2h)
+   - File: `components/home/VideoTabs.tsx` (NEW - client component)
    - Mark as `'use client'`
    - Use shadcn Tabs component
-   - 3 tabs: Running, Coding, Talks (Running default)
-   - Grid layout for video cards (2-3 per row)
+   - 3 TabsTriggers: Running (default), Coding, Talks
+   - Add count badges to tabs (e.g., "Running (5)")
+   - Grid layout per tab: `grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6`
    - Tab selection via useState (no URL persistence)
 
-4. **Build VideoCard Component (RSC)** (1.5h)
-   - File: `components/home/VideoCard.tsx`
+4. **Extract VideoCard Component** (1.5h)
+   - File: `components/home/VideoCard.tsx` (NEW - server component)
+   - Extract from existing Videos.tsx rendering logic
    - Display: thumbnail, title, duration overlay, publish date
    - Click → Open YouTube modal or inline player
    - Use existing YouTubeEmbed component (`components/shared/YouTubeEmbed.tsx`)
    - Hover effect: Subtle scale + shadow
+   - Verify lazy loading enabled
 
-5. **Integrate into Homepage** (30m)
+5. **Update Homepage Integration** (30m)
    - File: `app/page.tsx`
-   - Insert Videos after Projects section
+   - **UPDATE** import from `Videos` to `VideosWrapper`
+   - Verify Videos section positioned after Projects section
    - Section heading: "Videos"
 
 6. **Testing & Refinement** (1h)
@@ -223,69 +245,74 @@ Implement bento grid layout showcasing 5-6 projects with 1 featured project span
 
 ### Acceptance Criteria
 
-- [ ] FR-021: Bento grid displays 5-6 projects
-- [ ] FR-022: Featured project spans 2 columns
-- [ ] FR-023: Responsive grid (1 → 2 → 3 columns)
-- [ ] FR-024: Hover effects functional
-- [ ] FR-025: Modal opens with full project details
-- [ ] FR-026: Tags/tech stack visible
-- [ ] FR-027: GitHub/demo links functional
+- [ ] FR-034 through FR-041a: Bento grid displays 5-6 projects with featured project
 - [ ] SC-012: Vertical scroll reduced by 600-800px
+- [ ] **CRITICAL**: Projects.tsx is Server Component (no 'use client')
+- [ ] **CRITICAL**: Project data extracted to lib/projects.ts
 - [ ] Performance: Images optimized, LCP <1.0s
 - [ ] Accessibility: Modal keyboard accessible
 
 ### Files Modified/Created
 
-**Modified**:
-- `components/shared/ProjectCard.tsx` (add featured variant)
-- `components/shared/ProjectModal.tsx` (verify modal works)
-- `lib/projects.ts` (add project data)
+**Modified** (REFACTORED):
+- `components/home/Projects.tsx` - **REMOVE** 'use client', convert to RSC
+- `components/shared/ProjectCard.tsx` - Add featured variant support
+- `components/shared/ProjectModal.tsx` - Verify modal still works
 
 **Created**:
-- `components/home/ProjectsGrid.tsx` (RSC)
+- `lib/projects.ts` - Extract project data and getProjects() function
 
-**Modified**:
-- `app/page.tsx` (integrate ProjectsGrid)
+## Phase 4: Implementation - Blog → Articles Carousel REFACTORING
 
 **Estimated Time**: 2-3 hours
 **Dependencies**: Phase 1 complete, `@content-collections/mdx` configured
 **Priority**: P2 (Important)
+**Current State**: `components/home/Blog.tsx` displays vertical grid of blog cards
+**Target State**: Horizontal carousel with 3 most recent articles, touch/arrow navigation
 
 ### Scope
 
-Implement horizontal carousel showing 3 most recent blog articles with touch/arrow navigation.
+**REFACTOR** existing Blog.tsx to horizontal carousel + **RENAME** to Articles.tsx.
 
 ### Tasks
 
-1. **Configure Content Collections** (30m)
+1. **Verify Content Collections Schema** (15m)
    - File: `content-collections.ts`
-   - Ensure blog collection schema includes: title, excerpt, date, tags, image
-   - Export collection configuration
-   - Test: `bun run build` to generate types
+   - Verify blog collection schema includes: title, excerpt, date, tags, image
+   - Ensure types are generated
+   - Test: `bun run build` to verify schema
 
-2. **Build ArticlesCarousel Component (Client)** (1.5h)
-   - File: `components/home/ArticlesCarousel.tsx`
+2. **Create ArticlesCarousel Component** (1.5h)
+   - File: `components/home/ArticlesCarousel.tsx` (NEW - client component)
    - Mark as `'use client'`
    - Use useRef for scroll container
-   - CSS scroll-snap for smooth scrolling
+   - CSS scroll-snap for smooth horizontal scrolling
    - Arrow buttons (left/right) with click handlers
    - Hide arrows if ≤3 articles (spec clarification)
    - Center cards when few items
+   - Add scrollbar-hide utility to `app/globals.css`
 
-3. **Build ArticleCard Component (RSC)** (30m)
-   - File: `components/home/ArticleCard.tsx`
-   - Display: image, title, excerpt, date, read time, tags
-   - Link to `/blog/[slug]`
+3. **Rename Blog to Articles** (30m)
+   - **RENAME**: `components/home/Blog.tsx` → `Articles.tsx`
+   - Keep as Server Component wrapper
+   - Update to fetch 3 most recent articles via content-collections
+   - Pass data to ArticlesCarousel client component
+   - Update section heading to "Recent Articles"
+
+4. **Extract/Verify ArticleCard Component** (30m)
+   - File: `components/blog/BlogCard.tsx` (REUSE if suitable OR create ArticleCard.tsx)
+   - Verify displays: image, title, excerpt, date, read time, tags
+   - Verify link to `/blog/[slug]`
    - Minimal hover effect (shadow increase)
    - Responsive card width: 100% (mobile) → 400px (desktop)
 
-4. **Integrate into Homepage** (30m)
+5. **Update Homepage Integration** (30m)
    - File: `app/page.tsx`
-   - Fetch 3 most recent articles via content-collections
-   - Pass to ArticlesCarousel
-   - Section heading: "Recent Articles"
+   - **UPDATE** import from `Blog` to `Articles`
+   - Verify Articles section positioned correctly
+   - Test responsive layout on all breakpoints
 
-5. **Accessibility & Testing** (30m)
+6. **Accessibility & Testing** (30m)
    - Add `aria-label="Articles carousel"`
    - Keyboard scroll support (native browser)
    - Touch gesture testing (iPad, iPhone)
@@ -293,98 +320,179 @@ Implement horizontal carousel showing 3 most recent blog articles with touch/arr
 
 ### Acceptance Criteria
 
-- [ ] FR-015: Horizontal carousel displays 3 recent articles
-- [ ] FR-016: Touch swipe gestures work on mobile
-- [ ] FR-017: Arrow navigation functional
-- [ ] FR-018: Smooth CSS scroll-snap behavior
-- [ ] FR-019: Cards centered when ≤3 articles
-- [ ] FR-020: Links to full blog posts
-- [ ] SC-010: Vertical scroll reduced by 300-400px
+- [ ] FR-024 through FR-033b: Horizontal carousel with 3 recent articles
+- [ ] SC-004: Vertical scroll reduced by 300-400px
+- [ ] **BREAKING CHANGE**: Blog.tsx renamed to Articles.tsx
 - [ ] Accessibility: Keyboard navigable, screen reader announces count
 - [ ] Performance: No layout shift (CLS <0.1)
 
 ### Files Modified/Created
 
+**Modified** (REFACTORED):
+- `components/home/Blog.tsx` → **RENAMED** to `Articles.tsx`
+- `app/page.tsx` - Update import from Blog to Articles
+
 **Created**:
-- `components/home/ArticlesCarousel.tsx` (Client)
-- `components/home/ArticleCard.tsx` (RSC)
+- `components/home/ArticlesCarousel.tsx` - Client component for horizontal scroll
+- `components/home/ArticleCard.tsx` - IF BlogCard not suitable for reuse
 
 **Modified**:
-- `content-collections.ts` (verify schema)
-- `app/page.tsx` (integrate carousel)
-- `app/globals.css` (add scrollbar-hide utility if needed)
+- `content-collections.ts` - Verify schema
+- `app/globals.css` - Add scrollbar-hide utility if needed
 
-**Estimated Time**: 8-10 hours
+## Phase 2: Implementation - Timeline Dual-Column Layout REFACTORING
+
+**Estimated Time**: 6-8 hours
 **Dependencies**: Phase 1 complete
-**Priority**: P1 (Critical)
+**Priority**: P1 (Critical - MVP)
+**Current State**: `components/home/Timeline.tsx` displays single alternating column
+**Target State**: Dual parallel columns (Career | Running) side-by-side on desktop
 
 ### Scope
 
-Implement dual timeline layout (Career | Running) with chronological ordering and top-alignment.
+**REFACTOR** existing Timeline.tsx from single alternating column to dual parallel layout.
 
 ### Tasks
 
-1. **Create Timeline Data** (2h)
+1. **Split Timeline Data** (1.5h)
    - File: `lib/constants.ts`
-   - Add career milestones array (10-12 items)
-   - Add running achievements array (5-7 items)
-   - Use Lucide icons: Briefcase, Trophy, Award, Target, etc.
+   - **REFACTOR**: Split existing timeline data into `careerMilestones` and `runningMilestones` arrays
+   - Add any missing career milestones (target: 10-12 items)
+   - Add any missing running achievements (target: 5-7 items)
+   - Verify Lucide icons: Briefcase, Trophy, Award, Target, etc.
    - Validate chronological ordering
 
-2. **Build Timeline Component** (3h)
-   - File: `components/home/Timeline.tsx` (RSC)
-   - Responsive grid: 1 column (mobile) → 2 columns (lg breakpoint)
-   - Top-align containers with `items-start`
-   - Section heading: "My Journey"
-   - Dark mode support
+2. **Refactor Timeline Component** (2.5h)
+   - File: `components/home/Timeline.tsx` (keep as RSC)
+   - **BREAKING CHANGE**: Update to accept `type` prop: `'career' | 'running'`
+   - **REMOVE** alternating logic (index % 2) - no longer needed
+   - Convert to simple vertical timeline (no left/right positioning)
+   - Add section heading with icon per type (Briefcase for career, Trophy for running)
+   - Maintain dark mode support
 
-3. **Build TimelineItem Component** (2h)
-   - File: `components/home/TimelineItem.tsx` (RSC)
+3. **Extract TimelineItem Component** (1.5h)
+   - File: `components/home/TimelineItem.tsx` (NEW - RSC)
+   - Extract from existing Timeline.tsx rendering logic
    - Vertical line connecting items (CSS pseudo-elements)
    - Icon circle with background
    - Date, title, subtitle, description layout
    - Optional link with arrow icon
    - Hover effect: subtle scale on card
 
-4. **Add Iconography** (1h)
-   - Import Lucide icons: `import { Briefcase, Trophy } from 'lucide-react'`
-   - Career icons: Briefcase, Code, Award, GraduationCap
-   - Running icons: Trophy, Target, Flag, Zap
-
-5. **Integrate into Homepage** (1h)
+4. **Update Homepage Integration** (1.5h)
    - File: `app/page.tsx`
-   - Insert Timeline after Hero section
-   - Test scroll behavior
-   - Verify 500-700px vertical space savings
+   - **BREAKING CHANGE**: Wrap TWO Timeline instances in grid container
+   - Render: `<Timeline type="career" />` and `<Timeline type="running" />`
+   - Grid: `grid-cols-1 lg:grid-cols-2 gap-6`
+   - Top-align with `items-start`
+   - Verify positioned after Hero section
 
-6. **Testing & Refinement** (1h)
+5. **Testing & Refinement** (1h)
+   - Test responsive behavior: side-by-side ≥1024px, stacked <1024px
    - Mobile responsiveness (iPhone SE, iPad)
    - Dark mode contrast verification
-   - Accessibility audit (semantic HTML, keyboard focus)
+   - Accessibility audit (semantic HTML, keyboard focus, ARIA labels)
    - Lighthouse audit (maintain 95+)
 
 ### Acceptance Criteria
 
-- [ ] FR-001: Dual timeline displays career and running milestones
-- [ ] FR-002: Items chronologically ordered (oldest to newest)
-- [ ] FR-003: Top-aligned timelines
-- [ ] FR-004: Responsive breakpoints (stacked → side-by-side)
-- [ ] FR-005: Visual connector line between items
-- [ ] FR-006: Icons for each milestone type
-- [ ] FR-007: Hover effects functional
+- [ ] FR-001 through FR-009c: Dual timeline displays career and running milestones
 - [ ] SC-002: Vertical scroll reduced by 500-700px
+- [ ] **BREAKING CHANGE**: Timeline.tsx now requires `type` prop
 - [ ] Lighthouse Performance ≥95
 - [ ] No TypeScript errors
 
 ### Files Modified/Created
 
-**Created**:
-- `components/home/Timeline.tsx`
-- `components/home/TimelineItem.tsx`
+**Modified** (REFACTORED):
+- `components/home/Timeline.tsx` - Add type prop, remove alternating logic
+- `lib/constants.ts` - Split timeline data into two arrays
+- `app/page.tsx` - Render TWO Timeline instances
 
-**Modified**:
-- `lib/constants.ts` (add timeline data)
-- `app/page.tsx` (integrate Timeline component)
+**Created**:
+- `components/home/TimelineItem.tsx` - Extracted from Timeline.tsx
+
+## Phase 3: Implementation - Skills Tabbed Interface REFACTORING
+
+**Estimated Time**: 6-8 hours
+**Dependencies**: Phase 1 complete
+**Priority**: P1 (Critical - MVP)
+**Current State**: `components/home/Skills.tsx` displays simple grid (2 columns on md)
+**Target State**: Tabbed interface with 4 categories (Frontend/Backend/DevOps/Additional)
+
+### Scope
+
+**REFACTOR** existing Skills.tsx to implement tabbed category interface.
+
+### Tasks
+
+1. **Reorganize Skills Data** (1.5h)
+   - File: `lib/constants.ts`
+   - **REFACTOR**: Reorganize existing skills data into 4 category arrays
+   - Categories: frontend, backend, devops, additional
+   - Ensure each skill has: name, icon, proficiency (optional)
+   - Verify Lucide icons are available for all skills
+
+2. **Rename Skills to Wrapper** (30m)
+   - **RENAME**: `components/home/Skills.tsx` → `SkillsWrapper.tsx`
+   - Keep as Server Component wrapper
+   - Update to fetch categorized skill data
+   - Pass to new SkillTabs client component
+
+3. **Create SkillTabs Client Component** (2.5h)
+   - File: `components/home/SkillTabs.tsx` (NEW - client component)
+   - Mark as `'use client'`
+   - Use shadcn/ui Tabs component
+   - 4 TabsTriggers: Frontend (default), Backend, DevOps, Additional
+   - Add icons to tabs from lucide-react
+   - Responsive tab labels: full text on md+, icon-only on mobile with aria-label
+   - Grid per tab: `grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6`
+
+4. **Extract SkillCard Component** (1.5h)
+   - File: `components/home/SkillCard.tsx` (NEW - RSC)
+   - Extract from existing Skills.tsx rendering logic
+   - Display: icon, skill name, optional proficiency indicator
+   - Use shadcn/ui Card component
+   - Hover effect: subtle lift + shadow
+   - Dark mode support
+
+5. **Update Homepage Integration** (30m)
+   - File: `app/page.tsx`
+   - **UPDATE** import from `Skills` to `SkillsWrapper`
+   - Verify Skills section positioned correctly
+   - Test responsive layout on all breakpoints
+
+6. **Testing & Refinement** (1h)
+   - Test tab switching: verify Frontend selected by default
+   - Test keyboard navigation: Tab key + Arrow keys
+   - Verify screen reader announces tab counts ("Frontend tab, 1 of 4")
+   - Mobile responsiveness (icon-only tabs on <768px)
+   - Dark mode contrast verification
+   - Lighthouse audit (maintain 95+)
+
+### Acceptance Criteria
+
+- [ ] FR-010 through FR-018b: Tabbed skills interface with 4 categories
+- [ ] SC-003: Vertical scroll reduced by 400-600px
+- [ ] **BREAKING CHANGE**: Skills.tsx renamed to SkillsWrapper.tsx
+- [ ] Accessibility: Keyboard navigation, screen reader support
+- [ ] Performance: No layout shift (CLS <0.1)
+- [ ] Lighthouse Performance ≥95
+
+### Files Modified/Created
+
+**Modified** (REFACTORED):
+- `components/home/Skills.tsx` → **RENAMED** to `SkillsWrapper.tsx`
+- `lib/constants.ts` - Reorganize skills into 4 category arrays
+- `app/page.tsx` - Update import from Skills to SkillsWrapper
+
+**Created**:
+- `components/home/SkillTabs.tsx` - Client component for tab interface
+- `components/home/SkillCard.tsx` - Extracted from Skills.tsx
+
+## Phase 1: Foundation & Research
+
+
 - `app/globals.css` (timeline-specific styles if needed)
 
 ```plaintext

@@ -2,8 +2,24 @@
 
 **Feature Branch**: `002-portfolio-redesign`
 **Created**: 2025-10-21
-**Status**: Draft
+**Status**: In Progress - Refactoring Existing Implementation
+**Project Type**: **BROWNFIELD REFACTORING** - Existing components need modification, not new creation
 **Input**: User description: "Portfolio redesign to reduce vertical scroll by 50-60% while improving UX and maintaining accessibility/performance standards"
+
+## Implementation Context
+
+**CRITICAL**: This is a **refactoring project**, NOT greenfield development. The following components already exist and need modification:
+- ✅ `components/home/Timeline.tsx` - Exists (needs dual-column redesign)
+- ✅ `components/home/Skills.tsx` - Exists (needs tabbed interface conversion)
+- ✅ `components/home/Blog.tsx` - Exists (needs horizontal carousel conversion)
+- ✅ `components/home/Projects.tsx` - Exists (needs bento grid layout + server component conversion)
+- ✅ `components/home/Videos.tsx` - Exists (needs tabbed interface addition)
+
+**Constitution Violations Identified**:
+1. Projects.tsx uses `'use client'` with useEffect (must refactor to Server Component)
+2. Mock data embedded in Projects.tsx (must extract to lib/projects.ts)
+3. Missing ARIA labels on sections (must add per WCAG AA)
+4. Incomplete JSDoc comments (must add comprehensive documentation)
 
 ## Clarifications
 
@@ -14,6 +30,16 @@
 - Q: How should dual timelines be aligned when they have significantly different lengths (e.g., 10 career items vs 3 running items)? → A: Top-align both timelines (oldest events aligned), allow natural height difference at bottom
 - Q: How does the article carousel behave with only 1-2 articles (fewer than 3 visible slots on desktop)? → A: Center the available items, hide navigation arrows entirely when ≤3 articles
 - Q: Which components should use React Server Components vs Client Components? → A: RSC for Timeline/Skills/Projects layout, Client only for Tabs/Carousel controls (optimal)
+
+### Session 2025-10-21 (Analysis Phase - Critical Corrections)
+
+- Q: Should Videos default tab be "Technical" or "Running"? → **CLARIFIED**: FR-042a says "Technical" but plan.md says "Running". **DECISION**: Use "Running" (aligns with fitness-first brand identity per Constitution VII)
+- Q: How is "featured project" determined - first in array or explicit flag? → **CLARIFIED**: Use explicit `featured: true` flag in project data (exactly ONE project)
+- Q: Design token standard for section spacing? → **STANDARDIZED**: All sections MUST use `py-16` (64px) consistently per FR-058
+- Q: Design token standard for h2 headings? → **STANDARDIZED**: All h2 headings MUST use `text-3xl font-bold tracking-tight` consistently
+- Q: Grid gap standard? → **STANDARDIZED**: All grid layouts MUST use `gap-6` consistently
+- Q: Component naming: "Blog" vs "Articles"? → **CLARIFIED**: Rename Blog.tsx to Articles.tsx for spec alignment; component renders article carousel
+- Q: Skills grid columns - spec says "2/3/4" but implementation has "1/2"? → **CORRECTED**: MUST be `grid-cols-2 md:grid-cols-3 lg:grid-cols-4` per FR-012
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -235,8 +261,19 @@ As an interested visitor, I want to learn about engineering philosophy without c
 - **FR-056**: System MUST provide skip links for keyboard users
 - **FR-057**: System MUST work without JavaScript where possible (progressive enhancement)
 - **FR-058**: System MUST maintain consistent spacing scale (64px sections, 32px components)
+- **FR-058a**: ALL section containers MUST use `py-16` (64px) for vertical padding - NO EXCEPTIONS
+- **FR-058b**: ALL grid layouts MUST use `gap-6` for consistent spacing between items
+- **FR-058c**: ALL h2 section headings MUST use `text-3xl font-bold tracking-tight` consistently
+- **FR-058d**: ALL h2 heading margins MUST use `mb-8` for spacing below headings
+- **FR-058e**: ALL sections MUST use container class: `<div className="container mx-auto max-w-7xl">`
 - **FR-059**: System MUST use Tailwind CSS v4 utility classes exclusively
 - **FR-060**: System MUST follow shadcn/ui component patterns
+- **FR-060a**: ALL card components MUST use shadcn/ui Card/CardContent components (not custom bg-card divs)
+- **FR-061**: ALL sections MUST have semantic ARIA labels (aria-label attribute)
+- **FR-062**: ALL components MUST have comprehensive JSDoc comments with @param and @returns tags
+- **FR-063**: ALL interactive elements MUST have minimum 44x44px touch targets on mobile
+- **FR-064**: ALL hover effects MUST use `transition-all duration-300 ease-in-out` for consistency
+- **FR-065**: ALL icons MUST use lucide-react with consistent sizing: `h-6 w-6` (sections) or `h-4 w-4` (inline)
 
 ### Key Entities
 
