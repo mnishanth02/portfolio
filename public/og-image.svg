@@ -1,0 +1,7 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <text x="600" y="250" font-family="Arial, sans-serif" font-size="64" font-weight="bold" fill="#ffffff" text-anchor="middle">Your Name</text>
+  <text x="600" y="330" font-family="Arial, sans-serif" font-size="36" fill="#999999" text-anchor="middle">Fullstack Engineer & Marathon Runner</text>
+  <text x="600" y="420" font-family="Arial, sans-serif" font-size="24" fill="#666666" text-anchor="middle">Building high-performance web applications</text>
+  <text x="600" y="460" font-family="Arial, sans-serif" font-size="24" fill="#666666" text-anchor="middle">while chasing personal records on the track</text>
+</svg>

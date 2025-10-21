@@ -25,23 +25,23 @@
 **Purpose**: Project initialization and basic structure that serves all user stories
 
 - [x] T001 Verify Next.js 15.5.6 project structure with TypeScript and Tailwind CSS v4 in `package.json`
-- [ ] T002 [P] Verify Biome configuration for linting and formatting in `biome.json`
-- [ ] T003 [P] Install @content-collections/next and configure in `content-collections.config.ts`
+- [X] T002 [P] Verify Biome configuration for linting and formatting in `biome.json`
+- [X] T003 [P] Install @content-collections/next and configure in `content-collections.config.ts`
 - [x] T004 [P] Install React Hook Form and Zod for form validation: `bun install react-hook-form zod @hookform/resolvers`
-- [ ] T005 [P] Install Resend SDK for email: `bun install resend`
-- [ ] T006 [P] Install PostHog for analytics: `bun install posthog-js @posthog/next`
-- [ ] T007 [P] Install Fuse.js for search: `bun install fuse.js`
-- [ ] T008 [P] Install lite-youtube-embed: `bun install react-lite-youtube-embed`
-- [ ] T009 [P] Install reading-time utility: `bun install reading-time`
-- [ ] T010 [P] Install next-themes for dark mode: `bun install next-themes`
-- [ ] T011 Create environment variables template in `.env.example` with RESEND_API_KEY, NEXT_PUBLIC_POSTHOG_KEY, NEXT_PUBLIC_POSTHOG_HOST, NEXT_PUBLIC_SITE_URL
-- [ ] T012 [P] Create `content/blog/` directory for MDX blog posts
-- [ ] T013 [P] Create `content/projects/` directory for project JSON files
-- [ ] T014 [P] Create `public/images/projects/` directory for project thumbnails
-- [ ] T015 [P] Create `public/images/blog/` directory for blog featured images
-- [ ] T016 Create site configuration in `lib/constants.ts` with siteConfig, skills, achievements, and socialLinks
-- [ ] T017 Create validation schemas in `lib/validations.ts` for blogPostSchema, projectSchema, and contactSubmissionSchema
-- [ ] T018 Create type definitions in `types/index.ts` exporting all schemas and types
+- [X] T005 [P] Install Resend SDK for email: `bun install resend`
+- [X] T006 [P] Install PostHog for analytics: `bun install posthog-js @posthog/next`
+- [X] T007 [P] Install Fuse.js for search: `bun install fuse.js`
+- [X] T008 [P] Install lite-youtube-embed: `bun install react-lite-youtube-embed`
+- [X] T009 [P] Install reading-time utility: `bun install reading-time`
+- [X] T010 [P] Install next-themes for dark mode: `bun install next-themes`
+- [X] T011 Create environment variables template in `.env.example` with RESEND_API_KEY, NEXT_PUBLIC_POSTHOG_KEY, NEXT_PUBLIC_POSTHOG_HOST, NEXT_PUBLIC_SITE_URL
+- [X] T012 [P] Create `content/blog/` directory for MDX blog posts
+- [X] T013 [P] Create `content/projects/` directory for project JSON files
+- [X] T014 [P] Create `public/images/projects/` directory for project thumbnails
+- [X] T015 [P] Create `public/images/blog/` directory for blog featured images
+- [X] T016 Create site configuration in `lib/constants.ts` with siteConfig, skills, achievements, and socialLinks
+- [X] T017 Create validation schemas in `lib/validations.ts` for blogPostSchema, projectSchema, and contactSubmissionSchema
+- [X] T018 Create type definitions in `types/index.ts` exporting all schemas and types
 
 ---
 
@@ -51,20 +51,20 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T019 Configure content collections schema in `content-collections.config.ts` for blog posts with Zod validation
-- [ ] T020 Configure Next.js Image optimization in `next.config.ts` for optimized image delivery
-- [ ] T021 Create root layout in `app/layout.tsx` with metadata, fonts (Geist Sans/Mono), and theme provider
-- [ ] T022 Create global styles in `app/globals.css` with Tailwind imports, CSS variables for theme (OKLCH color space), and design tokens
-- [ ] T023 Create theme provider component in `components/providers/ThemeProvider.tsx` using next-themes
-- [ ] T024 Create PostHog provider component in `components/providers/PostHogProvider.tsx` for analytics
-- [ ] T025 Create utility functions in `lib/utils.ts` including cn() helper for className merging
-- [ ] T026 Create MDX processing utilities in `lib/mdx.ts` for getAllPosts(), getPostBySlug(), and reading time calculation
-- [ ] T027 [P] Create Navigation component in `components/shared/Navigation.tsx` with smooth scroll and mobile hamburger menu (FR-001 to FR-004)
-- [ ] T028 [P] Create Footer component in `components/shared/Footer.tsx` with copyright, social links, and tech stack credits (FR-032)
-- [ ] T029 [P] Create SocialLinks component in `components/shared/SocialLinks.tsx` for reusable social media icon links
-- [ ] T030 Create 404 page in `app/not-found.tsx` with helpful navigation back to home
-- [ ] T031 Create sitemap generator in `app/sitemap.ts` dynamically including all blog posts (FR-048)
-- [ ] T032 Create robots.txt generator in `app/robots.ts` with sitemap reference (FR-049)
+- [X] T019 Configure content collections schema in `content-collections.config.ts` for blog posts with Zod validation
+- [X] T020 Configure Next.js Image optimization in `next.config.ts` for optimized image delivery
+- [X] T021 Create root layout in `app/layout.tsx` with metadata, fonts (Geist Sans/Mono), and theme provider
+- [X] T022 Create global styles in `app/globals.css` with Tailwind imports, CSS variables for theme (OKLCH color space), and design tokens
+- [X] T023 Create theme provider component in `components/providers/ThemeProvider.tsx` using next-themes
+- [X] T024 Create PostHog provider component in `components/providers/PostHogProvider.tsx` for analytics
+- [X] T025 Create utility functions in `lib/utils.ts` including cn() helper for className merging
+- [X] T026 Create MDX processing utilities in `lib/mdx.ts` for getAllPosts(), getPostBySlug(), and reading time calculation
+- [X] T027 [P] Create Navigation component in `components/shared/Navigation.tsx` with smooth scroll and mobile hamburger menu (FR-001 to FR-004)
+- [X] T028 [P] Create Footer component in `components/shared/Footer.tsx` with copyright, social links, and tech stack credits (FR-032)
+- [X] T029 [P] Create SocialLinks component in `components/shared/SocialLinks.tsx` for reusable social media icon links
+- [X] T030 Create 404 page in `app/not-found.tsx` with helpful navigation back to home
+- [X] T031 Create sitemap generator in `app/sitemap.ts` dynamically including all blog posts (FR-048)
+- [X] T032 Create robots.txt generator in `app/robots.ts` with sitemap reference (FR-049)
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -80,60 +80,60 @@
 
 #### Hero Section (Immediate First Impression)
 
-- [ ] T033 [P] [US1] Create Hero section component in `components/home/Hero.tsx` with headshot, name, tagline, CTA buttons (FR-005, FR-006)
-- [ ] T034 [US1] Optimize headshot image with priority loading in Hero component using Next.js Image with priority prop (FR-007)
-- [ ] T035 [US1] Add social media quick links (GitHub, LinkedIn, Twitter, Strava, YouTube) to Hero using SocialLinks component (FR-006)
-- [ ] T036 [US1] Implement CTA buttons in Hero: "View Projects" (scroll to #projects) and "Contact Me" (scroll to #contact)
+- [X] T033 [P] [US1] Create Hero section component in `components/home/Hero.tsx` with headshot, name, tagline, CTA buttons (FR-005, FR-006)
+- [X] T034 [US1] Optimize headshot image with priority loading in Hero component using Next.js Image with priority prop (FR-007)
+- [X] T035 [US1] Add social media quick links (GitHub, LinkedIn, Twitter, Strava, YouTube) to Hero using SocialLinks component (FR-006)
+- [X] T036 [US1] Implement CTA buttons in Hero: "View Projects" (scroll to #projects) and "Contact Me" (scroll to #contact)
 
 #### About Section (Skills & Qualifications)
 
-- [ ] T037 [P] [US1] Create About section component in `components/home/About.tsx` with personal narrative (300-500 words) (FR-008)
-- [ ] T038 [US1] Create Skills display component in `components/home/Skills.tsx` with technology badges organized by category (Frontend, Backend, DevOps) (FR-009)
-- [ ] T039 [US1] Create Timeline component in `components/home/Timeline.tsx` displaying career milestones and running achievements from constants (FR-008)
-- [ ] T040 [US1] Add resume download button in About section linking to `/public/resume.pdf` (FR-011)
-- [ ] T041 [US1] Display running achievements (total races, PRs, notable results) in About section (FR-010)
+- [X] T037 [P] [US1] Create About section component in `components/home/About.tsx` with personal narrative (300-500 words) (FR-008)
+- [X] T038 [US1] Create Skills display component in `components/home/Skills.tsx` with technology badges organized by category (Frontend, Backend, DevOps) (FR-009)
+- [X] T039 [US1] Create Timeline component in `components/home/Timeline.tsx` displaying career milestones and running achievements from constants (FR-008)
+- [X] T040 [US1] Add resume download button in About section linking to `/public/resume.pdf` (FR-011)
+- [X] T041 [US1] Display running achievements (total races, PRs, notable results) in About section (FR-010)
 
 #### Projects Showcase (Work Quality Demonstration)
 
-- [ ] T042 [P] [US1] Create Projects section component in `components/home/Projects.tsx` with responsive grid layout (3 cols desktop, 2 tablet, 1 mobile) (FR-012)
-- [ ] T043 [US1] Create ProjectCard component in `components/shared/ProjectCard.tsx` with thumbnail, title, description, tech badges, demo/GitHub links (FR-013, FR-014)
-- [ ] T044 [US1] Add hover effects to ProjectCard revealing additional details (FR-015)
-- [ ] T045 [US1] Implement project modal preview component in `components/shared/ProjectModal.tsx` for quick view with Dialog from shadcn/ui
-- [ ] T046 [US1] Create project filtering logic in Projects component by technology (e.g., "Show React projects") (FR-016)
-- [ ] T047 [US1] Create project sorting logic (recent first, alphabetical, by type) in Projects component (FR-017)
-- [ ] T048 [US1] Load project data from `content/projects/*.json` in Projects component and validate against projectSchema
+- [X] T042 [P] [US1] Create Projects section component in `components/home/Projects.tsx` with responsive grid layout (3 cols desktop, 2 tablet, 1 mobile) (FR-012)
+- [X] T043 [US1] Create ProjectCard component in `components/shared/ProjectCard.tsx` with thumbnail, title, description, tech badges, demo/GitHub links (FR-013, FR-014)
+- [X] T044 [US1] Add hover effects to ProjectCard revealing additional details (FR-015)
+- [X] T045 [US1] Implement project modal preview component in `components/shared/ProjectModal.tsx` for quick view with Dialog from shadcn/ui
+- [X] T046 [US1] Create project filtering logic in Projects component by technology (e.g., "Show React projects") (FR-016)
+- [X] T047 [US1] Create project sorting logic (recent first, alphabetical, by type) in Projects component (FR-017)
+- [X] T048 [US1] Load project data from `content/projects/*.json` in Projects component and validate against projectSchema
 
 #### Contact Section (Recruiter Outreach)
 
-- [ ] T049 [P] [US1] Create Contact section component in `components/home/Contact.tsx` with form and social links (FR-027)
-- [ ] T050 [US1] Create ContactForm component in `components/home/ContactForm.tsx` using React Hook Form + Zod validation (FR-028, FR-029)
-- [ ] T051 [US1] Add honeypot spam protection field (hidden "website" input) to ContactForm (FR-031)
-- [ ] T052 [US1] Create contact form API route in `app/api/contact/route.ts` using Resend for email delivery
-- [ ] T053 [US1] Implement rate limiting in contact API route (1 submission per minute per IP)
-- [ ] T054 [US1] Add success/error message handling to ContactForm with clear user feedback (FR-030)
-- [ ] T055 [US1] Add direct email link and social media links in Contact section as fallback (FR-027)
+- [X] T049 [P] [US1] Create Contact section component in `components/home/Contact.tsx` with form and social links (FR-027)
+- [X] T050 [US1] Create ContactForm component in `components/home/ContactForm.tsx` using React Hook Form + Zod validation (FR-028, FR-029)
+- [X] T051 [US1] Add honeypot spam protection field (hidden "website" input) to ContactForm (FR-031)
+- [X] T052 [US1] Create contact form API route in `app/api/contact/route.ts` using Resend for email delivery
+- [X] T053 [US1] Implement rate limiting in contact API route (1 submission per minute per IP)
+- [X] T054 [US1] Add success/error message handling to ContactForm with clear user feedback (FR-030)
+- [X] T055 [US1] Add direct email link and social media links in Contact section as fallback (FR-027)
 
 #### Home Page Assembly
 
-- [ ] T056 [US1] Create home page route in `app/(home)/page.tsx` assembling Hero, About, Projects, Contact sections (FR-001)
-- [ ] T057 [US1] Implement smooth scrolling between sections in home page using scroll-behavior CSS or scroll library (FR-003)
-- [ ] T058 [US1] Add active section highlighting in Navigation based on scroll position (FR-003)
+- [X] T056 [US1] Create home page route in `app/(home)/page.tsx` assembling Hero, About, Projects, Contact sections (FR-001)
+- [X] T057 [US1] Implement smooth scrolling between sections in home page using scroll-behavior CSS or scroll library (FR-003)
+- [X] T058 [US1] Add active section highlighting in Navigation based on scroll position (FR-003)
 
 #### Mobile Responsiveness (P1 Requirement)
 
-- [ ] T059 [US1] Test and fix mobile responsiveness for all US1 components (320px-768px viewports) (FR-039 to FR-043)
-- [ ] T060 [US1] Ensure touch targets are minimum 44×44px on all interactive elements (FR-040)
-- [ ] T061 [US1] Verify text readability without zooming (minimum 16px font size) (FR-041)
-- [ ] T062 [US1] Test mobile navigation hamburger menu functionality
+- [X] T059 [US1] Test and fix mobile responsiveness for all US1 components (320px-768px viewports) (FR-039 to FR-043)
+- [X] T060 [US1] Ensure touch targets are minimum 44×44px on all interactive elements (FR-040)
+- [X] T061 [US1] Verify text readability without zooming (minimum 16px font size) (FR-041)
+- [X] T062 [US1] Test mobile navigation hamburger menu functionality
 
 #### SEO & Performance (P1 Critical)
 
-- [ ] T063 [US1] Add metadata export to home page with title, description, OpenGraph, Twitter Cards (FR-044 to FR-047)
-- [ ] T064 [US1] Add Person structured data (JSON-LD) in home layout for homepage (FR-055)
-- [ ] T065 [US1] Verify all images use Next.js Image component with proper width/height (FR-036)
-- [ ] T066 [US1] Optimize all images stored in `public/images/` (compress to <500KB, WebP format) (FR-037)
-- [ ] T067 [US1] Run Lighthouse audit on home page - target 95+ performance score (FR-033, FR-056)
-- [ ] T068 [US1] Verify FCP <1.5s and CLS <0.1 on 3G mobile connection (FR-034, FR-035)
+- [X] T063 [US1] Add metadata export to home page with title, description, OpenGraph, Twitter Cards (FR-044 to FR-047)
+- [X] T064 [US1] Add Person structured data (JSON-LD) in home layout for homepage (FR-055)
+- [X] T065 [US1] Verify all images use Next.js Image component with proper width/height (FR-036)
+- [X] T066 [US1] Optimize all images stored in `public/images/` (compress to <500KB, WebP format) (FR-037)
+- [X] T067 [US1] Run Lighthouse audit on home page - target 95+ performance score (FR-033, FR-056)
+- [X] T068 [US1] Verify FCP <1.5s and CLS <0.1 on 3G mobile connection (FR-034, FR-035)
 
 **Checkpoint**: At this point, User Story 1 (Technical Recruiter) should be fully functional. Recruiter can land on homepage → see skills/experience → browse projects → contact or download resume - all within 60 seconds.
 

@@ -1,0 +1,26 @@
+YOUR NAME
+Fullstack Engineer & Marathon Runner
+Email: your-email@example.com
+
+SUMMARY
+Fullstack software engineer with a passion for creating high-performance web applications.
+
+SKILLS
+- Frontend: React, Next.js, TypeScript, Tailwind CSS
+- Backend: Node.js, Express, PostgreSQL, MongoDB
+- DevOps: Docker, AWS, Vercel, CI/CD
+
+EXPERIENCE
+Senior Fullstack Engineer (2024 - Present)
+- Leading development of high-performance web applications
+
+Fullstack Engineer (2022 - 2024)
+- Specializing in React, Node.js, and cloud infrastructure
+
+EDUCATION
+B.S. in Computer Science (2020)
+
+RUNNING ACHIEVEMENTS
+- Marathon PR: 3:15:42 (Boston Marathon Qualifier)
+- Half Marathon PR: 1:32:18
+- 15+ races completed
