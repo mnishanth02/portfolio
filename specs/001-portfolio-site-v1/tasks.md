@@ -302,17 +302,17 @@
 - [X] T137 [P] Verify semantic HTML structure (header, nav, main, article, section, aside, footer) (FR-051)
 - [X] T138 [P] Verify heading hierarchy (single h1, no skipped levels) (FR-052)
 - [X] T139 Test keyboard navigation for all interactive elements with visible focus indicators (FR-053)
-- [ ] T140 Run axe DevTools accessibility audit and fix all WCAG AA violations
+- [X] T140 Run axe DevTools accessibility audit and fix all WCAG AA violations
 - [ ] T141 Verify color contrast meets 4.5:1 for normal text, 3:1 for large text (FR-054)
 - [ ] T142 Test screen reader compatibility with NVDA or VoiceOver
 - [X] T143 Add skip-to-content link for keyboard users
 
 ### Performance Optimization & Testing
 
-- [ ] T144 [P] Run Lighthouse audit on all pages (home, blog listing, blog post, project page)
+- [X] T144 [P] Run Lighthouse audit on all pages (home, blog listing, blog post, project page)
 - [X] T145 Optimize bundle size - remove unused dependencies and code
 - [X] T146 Enable Next.js compression and optimize build output
-- [ ] T147 Verify Core Web Vitals: LCP <2.5s, FID <100ms, CLS <0.1 (FR-033 to FR-035)
+- [X] T147 Verify Core Web Vitals: LCP <2.5s, FID <100ms, CLS <0.1 (FR-033 to FR-035)
 - [ ] T148 Test site performance on slow 3G connection
 - [X] T149 Verify static generation for all routes (check .next/server output)
 

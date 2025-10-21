@@ -62,7 +62,7 @@ export function Navigation() {
                                 type="button"
                                 onClick={ () => handleNavClick(link.href) }
                                 className={ cn(
-                                    "text-sm font-medium transition-colors hover:text-primary",
+                                    "text-sm font-medium transition-colors hover:text-primary touch-target py-3 px-2",
                                     activeSection === link.href
                                         ? "text-primary"
                                         : "text-muted-foreground",

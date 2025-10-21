@@ -32,7 +32,7 @@ export function SocialLinks({ className }: { className?: string }) {
                                         ? "noopener noreferrer"
                                         : undefined
                                 }
-                                className="text-muted-foreground hover:text-primary transition-colors"
+                                className="inline-flex items-center justify-center text-muted-foreground hover:text-primary transition-colors touch-target p-2"
                                 aria-label={ link.name }
                             >
                                 <IconComponent className="h-5 w-5" />
