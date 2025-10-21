@@ -1,8 +1,8 @@
 # Feature Specification: Personal Portfolio Website
 
-**Feature Branch**: `001-portfolio-site-v1`  
-**Created**: 2025-10-21  
-**Status**: Draft  
+**Feature Branch**: `001-portfolio-site-v1`
+**Created**: 2025-10-21
+**Status**: Draft
 **Input**: User description: "Create a detailed specification for building a personal portfolio website for a fullstack engineer who is also a passionate marathon runner"
 
 ## User Scenarios & Testing *(mandatory)*
@@ -86,25 +86,25 @@ Emma, a conference attendee, received a business card with the portfolio URL and
   * Core content (hero, about, projects list, contact info) must be visible in static HTML
   * Navigation links must work as standard anchor links
   * Contact form gracefully degrades to mailto: link
-  
+
 - What happens when blog posts contain very long code blocks or large images?
   * Code blocks scroll horizontally on mobile without breaking layout
   * Images are automatically optimized and lazy-loaded
   * Reading time calculation warns if post exceeds 15 minutes
-  
+
 - What happens when external services (YouTube, GitHub, social media) are unavailable?
   * Embedded videos show placeholder with link to YouTube
   * Social media icons remain visible but may show unavailable status
   * Contact form backend failure shows fallback mailto: link
-  
+
 - What happens when a user tries to submit the contact form multiple times rapidly?
   * Form includes rate limiting or disables submit button after first submission
   * Clear feedback indicates "Message sent, we'll respond within 24 hours"
-  
+
 - What happens when blog content is empty or no projects exist yet?
   * Sections gracefully show "Coming soon" state instead of breaking
   * Empty states have clear messaging about content being added
-  
+
 - What happens when a user accesses the site on very large screens (4K+)?
   * Content maintains maximum width (e.g., 1440px) and centers on screen
   * Background extends naturally without pixelation
@@ -141,58 +141,63 @@ Emma, a conference attendee, received a business card with the portfolio URL and
 
 **Content Hub (Blog & Videos)**
 - **FR-018**: Content section MUST display 3-4 most recent blog post previews with: featured image, title, excerpt (100-150 words), read time, publish date, tags
-- **FR-019**: Blog posts MUST be written in MDX format with frontmatter containing: title, date, description, tags, featuredImage
+- **FR-019**: Blog posts MUST be written in MDX format with frontmatter containing: title, date, description, tags, featuredImage, author
 - **FR-020**: Each blog post preview MUST link to a dedicated blog post page or expanded view
-- **FR-021**: Content section MUST include a "View All Posts" link directing to a full blog listing page or modal
-- **FR-022**: Content section MUST display 3-4 featured YouTube videos with responsive embedded players
+- **FR-021**: Content section MUST include a "View All Posts" link directing to a full blog listing page with tag filtering and search functionality
+- **FR-022**: Content section MUST display 3-4 manually selected featured YouTube videos with responsive embedded players using hardcoded video IDs
 - **FR-023**: Videos MUST support lazy loading to prevent blocking initial page load
 - **FR-024**: Content MUST support tagging system with at least two categories: Technical and Fitness/Running
+- **FR-025**: Blog listing page MUST provide tag-based filtering and client-side full-text search across post titles, descriptions, and content
+- **FR-026**: Blog posts MUST support auto-generated table of contents from heading structure for posts exceeding 1000 words
 
 **Contact & Footer**
-- **FR-025**: Contact section MUST include: contact form with fields (name, email, message), direct email link, and social media links
-- **FR-026**: Contact form MUST validate: name is not empty, email is valid format, message has minimum 20 characters
-- **FR-027**: Contact form MUST display clear error messages for validation failures inline with each field
-- **FR-028**: Contact form MUST show success confirmation message after successful submission
-- **FR-029**: Contact form MUST implement spam protection using honeypot technique
-- **FR-030**: Footer MUST display: copyright notice, social media links, "Built with [tech stack]" credits, current location/availability status
+- **FR-027**: Contact section MUST include: contact form with fields (name, email, message), direct email link, and social media links
+- **FR-028**: Contact form MUST validate: name is not empty, email is valid format, message has minimum 20 characters
+- **FR-029**: Contact form MUST display clear error messages for validation failures inline with each field
+- **FR-030**: Contact form MUST show success confirmation message after successful submission
+- **FR-031**: Contact form MUST implement spam protection using honeypot technique
+- **FR-032**: Footer MUST display: copyright notice, social media links, "Built with [tech stack]" credits, current location/availability status
 
 **Performance**
-- **FR-031**: Site MUST achieve Lighthouse performance score of 95 or higher on both mobile and desktop
-- **FR-032**: First Contentful Paint (FCP) MUST occur within 1.5 seconds on standard 3G connection
-- **FR-033**: Cumulative Layout Shift (CLS) MUST be below 0.1 to prevent visual content jumping
-- **FR-034**: All images MUST be optimized using Next.js Image component with appropriate width, height, and quality settings
-- **FR-035**: Site MUST use Static Site Generation (SSG) for all routes to ensure instant loading
+- **FR-033**: Site MUST achieve Lighthouse performance score of 95 or higher on both mobile and desktop
+- **FR-034**: First Contentful Paint (FCP) MUST occur within 1.5 seconds on standard 3G connection
+- **FR-035**: Cumulative Layout Shift (CLS) MUST be below 0.1 to prevent visual content jumping
+- **FR-036**: All images MUST be optimized using Next.js Image component with appropriate width, height, and quality settings
+- **FR-037**: All images MUST be stored in `/public/images/` directory and version-controlled with the codebase
+- **FR-038**: Site MUST use Static Site Generation (SSG) for all routes to ensure instant loading
 
 **Responsive Design**
-- **FR-036**: Site MUST be fully responsive across mobile (320px-768px), tablet (768px-1024px), and desktop (1024px+) viewports
-- **FR-037**: Touch targets (buttons, links) MUST be minimum 44x44 pixels on mobile devices
-- **FR-038**: Text MUST be readable without zooming on mobile devices (minimum 16px font size for body text)
-- **FR-039**: Images MUST scale proportionally without breaking layout on any screen size
-- **FR-040**: Navigation MUST adapt for mobile (e.g., hamburger menu or horizontal scrollable tabs)
+- **FR-039**: Site MUST be fully responsive across mobile (320px-768px), tablet (768px-1024px), and desktop (1024px+) viewports
+- **FR-040**: Touch targets (buttons, links) MUST be minimum 44x44 pixels on mobile devices
+- **FR-041**: Text MUST be readable without zooming on mobile devices (minimum 16px font size for body text)
+- **FR-042**: Images MUST scale proportionally without breaking layout on any screen size
+- **FR-043**: Navigation MUST adapt for mobile (e.g., hamburger menu or horizontal scrollable tabs)
 
 **SEO & Accessibility**
-- **FR-041**: Every page/section MUST have unique, descriptive title tags (50-60 characters)
-- **FR-042**: Every page/section MUST have meta descriptions (150-160 characters)
-- **FR-043**: Site MUST include OpenGraph metadata for social media sharing: og:title, og:description, og:image, og:url
-- **FR-044**: Site MUST include Twitter Card metadata: twitter:card, twitter:title, twitter:description, twitter:image
-- **FR-045**: Site MUST generate a sitemap.xml file listing all pages for search engine crawling
-- **FR-046**: Site MUST include a robots.txt file with appropriate crawling directives
-- **FR-047**: All images MUST have descriptive alt text (empty alt="" only for purely decorative images)
-- **FR-048**: Site MUST use semantic HTML5 elements: header, nav, main, article, section, aside, footer
-- **FR-049**: Heading hierarchy MUST be logical with single h1 per page and no skipped levels (h1 → h2 → h3)
-- **FR-050**: All interactive elements MUST be keyboard navigable with visible focus indicators
-- **FR-051**: Color contrast MUST meet WCAG 2.1 AA standards (4.5:1 for normal text, 3:1 for large text)
+- **FR-044**: Every page/section MUST have unique, descriptive title tags (50-60 characters)
+- **FR-045**: Every page/section MUST have meta descriptions (150-160 characters)
+- **FR-046**: Site MUST include OpenGraph metadata for social media sharing: og:title, og:description, og:image, og:url
+- **FR-047**: Site MUST include Twitter Card metadata: twitter:card, twitter:title, twitter:description, twitter:image
+- **FR-048**: Site MUST generate a sitemap.xml file listing all pages for search engine crawling
+- **FR-049**: Site MUST include a robots.txt file with appropriate crawling directives
+- **FR-050**: All images MUST have descriptive alt text (empty alt="" only for purely decorative images)
+- **FR-051**: Site MUST use semantic HTML5 elements: header, nav, main, article, section, aside, footer
+- **FR-052**: Heading hierarchy MUST be logical with single h1 per page and no skipped levels (h1 → h2 → h3)
+- **FR-053**: All interactive elements MUST be keyboard navigable with visible focus indicators
+- **FR-054**: Color contrast MUST meet WCAG 2.1 AA standards (4.5:1 for normal text, 3:1 for large text)
+- **FR-055**: Structured data (JSON-LD) SHOULD be added for blog posts (Article schema) and project showcases (SoftwareApplication schema)
+- **FR-056**: Page load speed MUST achieve 90+ Lighthouse performance score on both mobile and desktop
 
 **Content Management**
-- **FR-052**: Blog posts MUST be managed through MDX files stored in a `/content/blog/` directory
-- **FR-053**: Project data MUST be managed through MDX or JSON files stored in a `/content/projects/` directory
-- **FR-054**: MDX frontmatter MUST be validated using Zod schemas to ensure type safety
-- **FR-055**: Code blocks within blog posts MUST have syntax highlighting appropriate to the language
-- **FR-056**: Blog posts MUST display estimated reading time calculated from word count
+- **FR-057**: Blog posts MUST be managed through MDX files stored in a `/content/blog/` directory
+- **FR-058**: Project data MUST be managed through MDX or JSON files stored in a `/content/projects/` directory
+- **FR-059**: MDX frontmatter MUST be validated using Zod schemas to ensure type safety
+- **FR-060**: Code blocks within blog posts MUST have syntax highlighting appropriate to the language
+- **FR-061**: Blog posts MUST display estimated reading time calculated from word count
 
 **Dark Mode (Optional)**
-- **FR-057**: Site SHOULD support dark mode theme toggle or automatic detection based on system preference
-- **FR-058**: Dark mode SHOULD maintain WCAG AA contrast standards with adjusted color palette
+- **FR-062**: Site SHOULD support dark mode theme toggle or automatic detection based on system preference
+- **FR-063**: Dark mode SHOULD maintain WCAG AA contrast standards with adjusted color palette
 
 ### Key Entities
 
@@ -201,7 +206,7 @@ Emma, a conference attendee, received a business card with the portfolio URL and
   - Relationships: Has multiple tags, belongs to one or more categories
 
 - **Blog Post**: Represents a blog article written in MDX
-  - Attributes: title, slug, description, content (MDX), publishDate, lastUpdated, featuredImage, readingTime, tags, category (Technical/Fitness/Lifestyle)
+  - Attributes: title, slug, description, content (MDX), publishDate, lastUpdated, featuredImage, readingTime, tags, category (Technical/Fitness/Lifestyle), author
   - Relationships: Has multiple tags, belongs to one category, may reference projects
 
 - **Social Link**: Represents external social media profile
@@ -277,6 +282,8 @@ Emma, a conference attendee, received a business card with the portfolio URL and
 - Owner has YouTube channel with 3+ videos suitable for embedding
 - Owner maintains active GitHub profile with public repositories
 - Resume exists as PDF and is updated regularly by owner
+- Images are stored in `/public/images/` directory and version-controlled alongside code
+- Content previews are validated using local development server (npm run dev) before commits
 
 **Design Assumptions**
 - Design follows minimalist aesthetic inspired by provided screenshots: clean typography, generous whitespace, subtle animations
@@ -399,6 +406,7 @@ The following features are explicitly **NOT** included in this specification and
 - Git for version control
 - Biome for linting and formatting (not ESLint/Prettier per project configuration)
 - Next.js 15.5.6 with Turbopack for development and builds
+- Client-side search library: Fuse.js or FlexSearch for fuzzy search on blog posts and projects
 
 **Design Assets**
 - Professional headshot photo (high resolution, 800x800px minimum)
@@ -473,6 +481,16 @@ The following features are explicitly **NOT** included in this specification and
 
 ---
 
+## Clarifications
+
+### Session 2025-10-21
+
+- Q: How will new blog posts and projects be previewed before deploying to production? → A: Local development server with hot reload (`npm run dev` shows content immediately)
+- Q: Should YouTube videos be pulled dynamically via YouTube Data API or manually embedded with static video IDs? → A: Manual embedding with hardcoded video IDs in MDX/config file
+- Q: Where should images be stored for optimal performance and workflow simplicity? → A: Store in `/public/images/` folder within repository
+- Q: What additional blog post features beyond reading time and tags should be supported? → A: Reading time + auto-generated table of contents + author metadata (no series for MVP)
+- Q: Should the blog listing support search functionality beyond tag-based filtering? → A: Tag-based filtering + client-side full-text search with pre-built index
+
 ## Next Steps
 
 After clarification questions are answered:
@@ -482,4 +500,3 @@ After clarification questions are answered:
 3. Review constitution compliance before proceeding to development
 4. Create design mockups if needed based on referenced screenshots
 5. Set up development environment and initialize Next.js project structure
-
