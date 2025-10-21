@@ -149,51 +149,51 @@
 
 #### Blog Content Hub (Fitness Content Discovery)
 
-- [ ] T069 [P] [US2] Create Blog preview section component in `components/home/Blog.tsx` showing 3-4 recent posts (FR-018)
-- [ ] T070 [US2] Create BlogCard component in `components/blog/BlogCard.tsx` with featured image, title, excerpt, tags, reading time (FR-018)
-- [ ] T071 [US2] Add "View All Posts" link in Blog section linking to `/blog` page (FR-021)
-- [ ] T072 [US2] Fetch latest 3-4 blog posts from content collections in Blog component
-- [ ] T073 [US2] Filter blog posts by category to show fitness/running content prominently in Blog section (FR-024)
+- [X] T069 [P] [US2] Create Blog preview section component in `components/home/Blog.tsx` showing 3-4 recent posts (FR-018)
+- [X] T070 [US2] Create BlogCard component in `components/blog/BlogCard.tsx` with featured image, title, excerpt, tags, reading time (FR-018)
+- [X] T071 [US2] Add "View All Posts" link in Blog section linking to `/blog` page (FR-021)
+- [X] T072 [US2] Fetch latest 3-4 blog posts from content collections in Blog component
+- [X] T073 [US2] Filter blog posts by category to show fitness/running content prominently in Blog section (FR-024)
 
 #### Blog Listing Page (Content Browsing)
 
-- [ ] T074 [P] [US2] Create blog listing page in `app/blog/page.tsx` displaying all blog posts with pagination or load more (FR-021)
-- [ ] T075 [US2] Create blog layout in `app/blog/layout.tsx` with breadcrumbs and sidebar (optional)
-- [ ] T076 [US2] Implement tag filtering in blog listing page (Technical, Fitness, Lifestyle categories) (FR-024, FR-025)
-- [ ] T077 [US2] Create search bar component in `components/blog/SearchBar.tsx` using Fuse.js for client-side search (FR-025)
-- [ ] T078 [US2] Integrate search functionality in blog listing page searching titles, descriptions, content (FR-025)
-- [ ] T079 [US2] Add blog listing metadata with title, description, OpenGraph tags
+- [X] T074 [P] [US2] Create blog listing page in `app/blog/page.tsx` displaying all blog posts with pagination or load more (FR-021)
+- [X] T075 [US2] Create blog layout in `app/blog/layout.tsx` with breadcrumbs and sidebar (optional)
+- [X] T076 [US2] Implement tag filtering in blog listing page (Technical, Fitness, Lifestyle categories) (FR-024, FR-025)
+- [X] T077 [US2] Create search bar component in `components/blog/SearchBar.tsx` using Fuse.js for client-side search (FR-025)
+- [X] T078 [US2] Integrate search functionality in blog listing page searching titles, descriptions, content (FR-025)
+- [X] T079 [US2] Add blog listing metadata with title, description, OpenGraph tags
 
 #### Individual Blog Post Pages (Deep Content Engagement)
 
-- [ ] T080 [P] [US2] Create blog post page in `app/blog/[slug]/page.tsx` with generateStaticParams for SSG (FR-020)
-- [ ] T081 [US2] Create MDX components in `components/blog/MDXComponents.tsx` for custom rendering (headings, links, code blocks, images)
-- [ ] T082 [US2] Add syntax highlighting for code blocks in blog posts using Prism or Shiki (FR-060)
-- [ ] T083 [US2] Create MDX styles in `styles/mdx.css` for prose formatting (Tailwind typography plugin)
-- [ ] T084 [US2] Add table of contents component in `components/blog/TableOfContents.tsx` for posts >1000 words (FR-026)
-- [ ] T085 [US2] Generate TOC from heading structure in blog post page (FR-026)
-- [ ] T086 [US2] Display reading time in blog post page (FR-061)
-- [ ] T087 [US2] Add BlogPosting structured data (JSON-LD) to blog post page (FR-055)
-- [ ] T088 [US2] Add metadata generation function to blog post page with title, description, OpenGraph tags (FR-044 to FR-047)
+- [X] T080 [P] [US2] Create blog post page in `app/blog/[slug]/page.tsx` with generateStaticParams for SSG (FR-020)
+- [X] T081 [US2] Create MDX components in `components/blog/MDXComponents.tsx` for custom rendering (headings, links, code blocks, images)
+- [X] T082 [US2] Add syntax highlighting for code blocks in blog posts using Prism or Shiki (FR-060)
+- [X] T083 [US2] Create MDX styles in `styles/mdx.css` for prose formatting (Tailwind typography plugin)
+- [X] T084 [US2] Create table of contents component in `components/blog/TableOfContents.tsx` for posts >1000 words (FR-026)
+- [X] T085 [US2] Generate TOC from heading structure in blog post page (FR-026)
+- [X] T086 [US2] Display reading time in blog post page (FR-061)
+- [X] T087 [US2] Add BlogPosting structured data (JSON-LD) to blog post page (FR-055)
+- [X] T088 [US2] Add metadata generation function to blog post page with title, description, OpenGraph tags (FR-044 to FR-047)
 
 #### YouTube Video Embeds (Training Content)
 
-- [ ] T089 [P] [US2] Add featured videos section to Blog component or create separate Videos component in `components/home/Videos.tsx` (FR-022)
-- [ ] T090 [US2] Create YouTubeEmbed component in `components/shared/YouTubeEmbed.tsx` using lite-youtube-embed for lazy loading (FR-023)
-- [ ] T091 [US2] Add 3-4 hardcoded video IDs to siteConfig.featuredVideos in `lib/constants.ts`
-- [ ] T092 [US2] Embed YouTube videos in Videos section with lazy loading to prevent blocking page load (FR-023)
+- [X] T089 [P] [US2] Add featured videos section to Blog component or create separate Videos component in `components/home/Videos.tsx` (FR-022)
+- [X] T090 [US2] Create YouTubeEmbed component in `components/shared/YouTubeEmbed.tsx` using lite-youtube-embed for lazy loading (FR-023)
+- [X] T091 [US2] Add 3-4 hardcoded video IDs to siteConfig.featuredVideos in `lib/constants.ts`
+- [X] T092 [US2] Embed YouTube videos in Videos section with lazy loading to prevent blocking page load (FR-023)
 
 #### Running Achievements Integration (About Section Enhancement)
 
-- [ ] T093 [US2] Enhance About section narrative to integrate running journey with engineering background (Constitution VII)
-- [ ] T094 [US2] Add running stats display (total races, PRs, notable achievements) in About section (FR-010)
-- [ ] T095 [US2] Ensure social links prominently display Strava, Instagram, YouTube in Hero and Footer (FR-006, FR-032)
+- [X] T093 [US2] Enhance About section narrative to integrate running journey with engineering background (Constitution VII)
+- [X] T094 [US2] Add running stats display (total races, PRs, notable achievements) in About section (FR-010)
+- [X] T095 [US2] Ensure social links prominently display Strava, Instagram, YouTube in Hero and Footer (FR-006, FR-032)
 
 #### Sample Content Creation
 
-- [ ] T096 [P] [US2] Create 2-3 sample fitness blog posts in `content/blog/` with MDX frontmatter (marathon training, race reports, etc.)
-- [ ] T097 [US2] Add featured images for sample fitness blog posts to `public/images/blog/`
-- [ ] T098 [US2] Validate sample blog post frontmatter against blogPostSchema
+- [X] T096 [P] [US2] Create 2-3 sample fitness blog posts in `content/blog/` with MDX frontmatter (marathon training, race reports, etc.)
+- [X] T097 [US2] Add featured images for sample fitness blog posts to `public/images/blog/`
+- [X] T098 [US2] Validate sample blog post frontmatter against blogPostSchema
 
 **Checkpoint**: At this point, User Story 2 (Fitness Community) should be fully functional. Fitness enthusiast can discover running content → read blog posts → watch videos → follow on social media - all within 3 minutes.
 

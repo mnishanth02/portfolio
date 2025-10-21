@@ -1,4 +1,8 @@
-export type { BlogPost, ContactSubmission, Project } from "@/lib/validations";
+// Re-export validation schemas
+
+// BlogPost type from content-collections (includes body from MDX compilation)
+export type { BlogPost } from "@/.content-collections/generated";
+export type { ContactSubmission, Project } from "@/lib/validations";
 
 /**
  * Navigation Link Type

@@ -207,26 +207,39 @@ export const achievements: Achievement[] = [
 ];
 
 /**
- * Featured YouTube Videos
- * Highlighted training and race videos
+ * Featured Videos Configuration
+ * YouTube video embeds for training content section
  */
 export const featuredVideos: FeaturedVideo[] = [
   {
-    id: "dQw4w9WgXcQ", // Replace with actual video ID
+    id: "dQw4w9WgXcQ1", // TODO: Replace with actual video ID
     title: "Marathon Training Week in the Life",
     description: "A week of 60-mile training during marathon prep",
   },
   {
-    id: "dQw4w9WgXcQ", // Replace with actual video ID
+    id: "dQw4w9WgXcQ2", // TODO: Replace with actual video ID
     title: "Chicago Marathon Race Recap",
     description: "Breaking down my BQ race strategy and execution",
   },
   {
-    id: "dQw4w9WgXcQ", // Replace with actual video ID
+    id: "dQw4w9WgXcQ3", // TODO: Replace with actual video ID
     title: "Software Engineer's Guide to Marathon Training",
     description: "Applying engineering principles to running performance",
   },
 ];
+
+/**
+ * Search Configuration for Fuse.js
+ * Used in blog post searching and filtering
+ */
+export const SEARCH_CONFIG = {
+  /** Fuzzy search sensitivity (0 = exact match, 1 = match anything) */
+  threshold: 0.3,
+  /** Fields to search within */
+  keys: ["title", "description", "tags", "category"],
+  /** Include relevance score in results */
+  includeScore: true,
+};
 
 /**
  * Tech Stack Credits

@@ -4,6 +4,8 @@ import { Footer } from "@/components/shared/Footer";
 import { Hero } from "@/components/home/Hero";
 import { About } from "@/components/home/About";
 import { Projects } from "@/components/home/Projects";
+import { Blog } from "@/components/home/Blog";
+import { Videos } from "@/components/home/Videos";
 import { Contact } from "@/components/home/Contact";
 import { siteConfig, socialLinks } from "@/lib/constants";
 
@@ -92,6 +94,8 @@ export default function Home() {
           <Hero />
           <About />
           <Projects />
+          <Blog />
+          <Videos />
           <Contact />
         </main>
         <Footer />

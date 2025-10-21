@@ -1,0 +1,139 @@
+---
+title: "Building a Data-Driven Marathon Training Plan"
+description: "How I applied software engineering principles to design a 16-week marathon training plan using heart rate data, progressive overload, and systematic iteration."
+publishedAt: "2025-09-15"
+updatedAt: "2025-10-01"
+category: "fitness"
+tags: ["marathon", "training", "data-analysis", "running", "fitness"]
+image: "marathon-training.svg"
+featured: true
+author: "Nishanth Murugan"
+---
+
+## Introduction
+
+Training for a marathon is like building a complex software system - it requires careful planning, systematic execution, data-driven decisions, and continuous iteration. After completing my first marathon in 3:45, I knew I wanted to approach my second attempt with the same rigor I bring to software development.
+
+This is the story of how I built a data-driven marathon training plan that helped me achieve a Boston Marathon qualifying time of 3:15:42.
+
+## The Problem Statement
+
+My first marathon was a humbling experience. I went out too fast, bonked at mile 20, and struggled through the final 10K. Looking back, I realized I had made several critical errors:
+
+- **No structured training plan**: I was running high mileage but without purpose
+- **Ignoring recovery**: Every run was at the same moderate effort
+- **No data analysis**: I wasn't tracking heart rate, pace zones, or recovery metrics
+- **Poor race strategy**: I didn't respect the distance
+
+Sound familiar? These are classic engineering mistakes translated to running.
+
+## Applying Software Engineering Principles
+
+### 1. Define Success Criteria
+
+Before writing a single line of code (or running a single mile), I defined my success criteria:
+
+- **Primary Goal**: Boston Marathon Qualifier (BQ time of 3:20 for my age group)
+- **Secondary Goal**: Run negative splits (second half faster than first)
+- **Constraint**: Stay injury-free throughout 16-week training cycle
+
+### 2. Break Down the Problem
+
+I decomposed the marathon into manageable components - weekly mileage, long runs, speed work, tempo runs, easy runs, and recovery protocols.
+
+Each component needed its own sub-plan and progression strategy.
+
+### 3. Implement Progressive Overload
+
+Just like gradually refactoring a codebase, I applied progressive overload:
+
+- **Weeks 1-4**: Base building (35-45 miles/week)
+- **Weeks 5-8**: Intensity introduction (45-55 miles/week)
+- **Weeks 9-12**: Peak training (55-65 miles/week)
+- **Weeks 13-14**: Taper (40-50 miles/week)
+- **Weeks 15-16**: Race week (20 miles + race)
+
+### 4. Data-Driven Decision Making
+
+I tracked every run with these metrics:
+
+- Heart rate zones (using Garmin Forerunner)
+- Pace by mile
+- Perceived effort (RPE 1-10)
+- Sleep quality (Whoop recovery score)
+- Resting heart rate
+- Training load and recovery time
+
+## The Technical Stack
+
+My "training stack" included:
+
+- **Garmin Forerunner 955**: Primary data collection
+- **Whoop 4.0**: Sleep and recovery tracking
+- **Strava**: Social accountability and route planning
+- **Google Sheets**: Custom training log with formulas for weekly mileage, pace zones, and progressive overload calculations
+
+## Key Insights from Data
+
+### Heart Rate Zones
+
+I discovered I was running my "easy" runs way too hard. My easy pace should have been 8:30-9:00/mile at HR Zone 2 (140-150 bpm), but I was consistently running 8:00/mile at Zone 3 (155-165 bpm).
+
+**The Fix**: Slowed down my easy runs dramatically. This felt embarrassing at first (people walking were passing me!), but my fitness exploded.
+
+### Long Run Progression
+
+Instead of jumping from 10 miles to 20 miles randomly, I created a systematic progression with recovery weeks built in every 4th week.
+
+### Race Day Strategy
+
+Using my training data, I calculated my optimal race pace:
+
+- **Goal Time**: 3:15:00 (7:27/mile average)
+- **Strategy**: Negative splits
+  - Miles 1-6: 7:35/mile (slightly conservative start)
+  - Miles 7-13.1: 7:30/mile (settle into goal pace)
+  - Miles 13.1-20: 7:25/mile (push the pace)
+  - Miles 20-26.2: 7:15/mile or faster (empty the tank)
+
+## Results
+
+On race day, everything clicked:
+
+- **First Half**: 1:38:30 (7:31/mile average)
+- **Second Half**: 1:37:12 (7:23/mile average)
+- **Final Time**: 3:15:42 (negative split of 1:18!)
+- **Feeling**: Strong finish, could have gone faster
+
+**Boston Qualified by 4:18!**
+
+## Lessons Learned
+
+1. **Slow down easy runs**: 80% of your running should be truly easy (Zone 2 heart rate)
+2. **Data guides but doesn't dictate**: Sometimes you need to listen to your body over your watch
+3. **Recovery is training**: Rest days and easy weeks are when your body adapts and gets stronger
+4. **Progressive overload works**: Small, consistent increases > big random jumps
+5. **Race strategy matters**: Going out too fast is engineering technical debt - you'll pay with interest
+
+## Next Steps
+
+Now that I have my BQ time, I'm applying the same principles to:
+
+- Lower my marathon time to 3:10
+- Improve my half marathon PR to sub-1:30
+- Help other runners build data-driven training plans
+
+The intersection of software engineering and endurance athletics continues to fascinate me. Both require systematic thinking, data-driven decisions, and relentless iteration toward excellence.
+
+## Resources
+
+If you want to build your own data-driven training plan, here are my recommended resources:
+
+- **Jack Daniels' Running Formula**: The gold standard for pace/heart rate training zones
+- **Training Peaks**: Free version is great for basic workout planning
+- **Strava**: Best for tracking consistency and accountability
+- **Garmin Connect**: Excellent data visualization if you have a Garmin device
+
+---
+
+*Have questions about marathon training or want to discuss data-driven approaches to running? [Contact me](/contact) or connect with me on [Strava](https://www.strava.com/athletes/11694245)!*
