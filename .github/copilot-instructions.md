@@ -15,10 +15,10 @@ This is a portfolio website built with **Next.js 15.5.6** (App Router), **React 
 
 ### Development Commands
 ```bash
-npm run dev          # Start dev server with Turbopack
-npm run build        # Production build with Turbopack
-npm run lint         # Run Biome checks (NOT eslint)
-npm run format       # Format code with Biome (NOT prettier)
+bun run dev          # Start dev server with Turbopack
+bun run build        # Production build with Turbopack
+bun run lint         # Run Biome checks (NOT eslint)
+bun run format       # Format code with Biome (NOT prettier)
 ```
 
 ### Adding shadcn/ui Components

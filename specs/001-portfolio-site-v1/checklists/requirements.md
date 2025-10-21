@@ -1,7 +1,7 @@
 # Specification Quality Checklist: Personal Portfolio Website
 
-**Purpose**: Validate specification completeness and quality before proceeding to planning  
-**Created**: 2025-10-21  
+**Purpose**: Validate specification completeness and quality before proceeding to planning
+**Created**: 2025-10-21
 **Feature**: [spec.md](../spec.md)
 
 ## Content Quality
