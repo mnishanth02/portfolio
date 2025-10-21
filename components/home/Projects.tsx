@@ -40,7 +40,7 @@ export function Projects() {
                         ],
                         category: "fullstack",
                         status: "completed",
-                        image: "project-1.jpg",
+                        image: "placeholder.svg",
                         demoUrl: "https://demo.example.com",
                         githubUrl: "https://github.com/username/project",
                         featured: true,

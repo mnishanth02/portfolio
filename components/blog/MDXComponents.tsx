@@ -1,5 +1,5 @@
 import type { MDXComponents } from "mdx/types";
-import Image from "next/image";
+import { SafeImage } from "@/components/ui/safe-image";
 import Link from "next/link";
 
 export const mdxComponents: MDXComponents = {
@@ -58,7 +58,7 @@ export const mdxComponents: MDXComponents = {
     // Images - use Next.js Image component
     img: ({ src, alt }) => (
         <span className="relative my-8 block overflow-hidden rounded-lg border">
-            <Image
+            <SafeImage
                 src={ src || "" }
                 alt={ alt || "" }
                 width={ 1200 }

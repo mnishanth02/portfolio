@@ -1,7 +1,7 @@
 import type { BlogPost } from "@/types";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import Image from "next/image";
+import { SafeImage } from "@/components/ui/safe-image";
 import Link from "next/link";
 import { Calendar, Clock } from "lucide-react";
 import { formatDate } from "@/lib/utils";
@@ -17,7 +17,7 @@ export function BlogCard({ post, priority = false }: BlogCardProps) {
             <Card className="h-full overflow-hidden transition-all hover:shadow-lg">
                 { post.image && (
                     <div className="relative aspect-video w-full overflow-hidden">
-                        <Image
+                        <SafeImage
                             src={ `/images/blog/${post.image}` }
                             alt={ post.title }
                             fill

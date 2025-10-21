@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { SafeImage } from "@/components/ui/safe-image";
 import { SocialLinks } from "@/components/shared/SocialLinks";
 import { siteConfig } from "@/lib/constants";
 import { ArrowRight, FileDown } from "lucide-react";
@@ -76,7 +76,7 @@ export function Hero() {
                     {/* Headshot Image */ }
                     <div className="order-1 md:order-2 flex justify-center">
                         <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
-                            <Image
+                            <SafeImage
                                 src="/images/headshot.svg"
                                 alt={ `${siteConfig.name} - Professional headshot` }
                                 width={ 400 }

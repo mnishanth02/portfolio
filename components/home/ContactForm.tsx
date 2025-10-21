@@ -111,21 +111,26 @@ export function ContactForm() {
 
                 {/* Message Field */ }
                 <FormField
-                    control={ form.control }
+                    control={form.control}
                     name="message"
-                    render={ ({ field }) => (
+                    render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Message *</FormLabel>
+                            <div className="flex items-center justify-between mb-2">
+                                <FormLabel>Message *</FormLabel>
+                                <span className="text-xs text-muted-foreground tabular-nums">
+                                    {field.value?.length || 0} / 5000 characters
+                                </span>
+                            </div>
                             <FormControl>
                                 <Textarea
-                                    placeholder="Tell me about your project or inquiry..."
-                                    rows={ 6 }
-                                    { ...field }
+                                    placeholder="Tell me about your project or inquiry... Feel free to include detailed information about your goals, timeline, and technical requirements."
+                                    rows={8}
+                                    {...field}
                                 />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
-                    ) }
+                    )}
                 />
 
                 {/* Honeypot Field (hidden) */ }

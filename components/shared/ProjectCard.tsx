@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "@/types";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { SafeImage } from "@/components/ui/safe-image";
 import { ExternalLink, Github, Eye } from "lucide-react";
 import { useState } from "react";
 import { ProjectModal } from "./ProjectModal";
@@ -27,17 +27,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 <CardHeader className="p-0">
                     {/* Project Thumbnail */ }
                     <div className="relative w-full h-48 overflow-hidden rounded-t-lg bg-muted">
-                        <Image
+                        <SafeImage
                             src={ `/images/projects/${project.image}` }
                             alt={ project.title }
                             width={ 600 }
                             height={ 400 }
                             className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
-                            onError={ (e) => {
-                                // Fallback to placeholder if image fails to load
-                                e.currentTarget.src =
-                                    "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0iI2VlZSIvPjwvc3ZnPg==";
-                            } }
                         />
                         {/* Overlay with quick view button */ }
                         <div className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">

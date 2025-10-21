@@ -27,7 +27,16 @@ export interface SocialLink {
  */
 export interface SkillCategory {
   category: string;
-  skills: string[];
+  skills: Skill[];
+}
+
+/**
+ * Individual Skill Type with Proficiency
+ */
+export interface Skill {
+  name: string;
+  proficiency: "expert" | "advanced" | "intermediate" | "learning";
+  yearsOfExperience?: number;
 }
 
 /**

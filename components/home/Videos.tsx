@@ -8,7 +8,7 @@ export function Videos() {
 
     return (
         <section id="videos" className="py-20 bg-muted/50">
-            <div className="container">
+            <div className="ontainer mx-auto max-w-7xl">
                 {/* Section Header */ }
                 <div className="mb-12 text-center">
                     <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">

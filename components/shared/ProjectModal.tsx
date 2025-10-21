@@ -10,9 +10,9 @@ import {
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { SafeImage } from "@/components/ui/safe-image";
 import { ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 
 interface ProjectModalProps {
     project: Project;
@@ -35,16 +35,12 @@ export function ProjectModal({ project, open, onClose }: ProjectModalProps) {
 
                 {/* Project Image */ }
                 <div className="relative w-full h-64 rounded-lg overflow-hidden bg-muted">
-                    <Image
+                    <SafeImage
                         src={ `/images/projects/${project.image}` }
                         alt={ project.title }
                         width={ 800 }
                         height={ 450 }
                         className="object-cover w-full h-full"
-                        onError={ (e) => {
-                            e.currentTarget.src =
-                                "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjQ1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjQ1MCIgZmlsbD0iI2VlZSIvPjwvc3ZnPg==";
-                        } }
                     />
                 </div>
 
@@ -123,15 +119,13 @@ export function ProjectModal({ project, open, onClose }: ProjectModalProps) {
                     ) }
                 </div>
 
-                {/* Learn More Link (for future project detail pages) */ }
-                <div className="text-center pt-2">
-                    <Link
-                        href={ `/projects/${project.id}` }
-                        className="text-sm text-primary hover:underline"
-                        onClick={ onClose }
-                    >
-                        Learn more about this project →
-                    </Link>
+                {/* Learn More Button - Prominent CTA for detail page */ }
+                <div className="pt-4">
+                    <Button asChild variant="secondary" className="w-full">
+                        <Link href={ `/projects/${project.id}` } onClick={ onClose }>
+                            Learn More About This Project →
+                        </Link>
+                    </Button>
                 </div>
             </DialogContent>
         </Dialog>

@@ -101,43 +101,85 @@ export const socialLinks: SocialLink[] = [
 
 /**
  * Skills by Category
- * Technical skills organized by domain
+ * Technical skills organized by domain with proficiency levels
  */
 export const skills: SkillCategory[] = [
   {
-    category: "Frontend",
+    category: "Frontend Development",
     skills: [
-      "React",
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "HTML5",
-      "CSS3",
-      "JavaScript",
+      { name: "React", proficiency: "expert", yearsOfExperience: 5 },
+      { name: "Next.js", proficiency: "expert", yearsOfExperience: 4 },
+      { name: "TypeScript", proficiency: "expert", yearsOfExperience: 5 },
+      { name: "Tailwind CSS", proficiency: "advanced", yearsOfExperience: 3 },
+      {
+        name: "JavaScript (ES6+)",
+        proficiency: "expert",
+        yearsOfExperience: 7,
+      },
+      { name: "HTML5 & CSS3", proficiency: "expert", yearsOfExperience: 7 },
+      {
+        name: "Responsive Design",
+        proficiency: "expert",
+        yearsOfExperience: 6,
+      },
     ],
   },
   {
-    category: "Backend",
+    category: "Backend Development",
     skills: [
-      "Node.js",
-      "Express",
-      "PostgreSQL",
-      "MongoDB",
-      "Redis",
-      "REST APIs",
-      "Convex",
+      { name: "Node.js", proficiency: "expert", yearsOfExperience: 5 },
+      { name: "Express.js", proficiency: "advanced", yearsOfExperience: 4 },
+      { name: "PostgreSQL", proficiency: "advanced", yearsOfExperience: 4 },
+      { name: "MongoDB", proficiency: "advanced", yearsOfExperience: 3 },
+      { name: "Redis", proficiency: "intermediate", yearsOfExperience: 2 },
+      { name: "REST APIs", proficiency: "expert", yearsOfExperience: 5 },
+      { name: "GraphQL", proficiency: "intermediate", yearsOfExperience: 2 },
     ],
   },
   {
     category: "DevOps & Tools",
     skills: [
-      "Git",
-      "Docker",
-      "AWS",
-      "Vercel",
-      "GitHub Actions",
-      "CI/CD",
-      "Linux",
+      { name: "Git & GitHub", proficiency: "expert", yearsOfExperience: 7 },
+      { name: "Docker", proficiency: "advanced", yearsOfExperience: 3 },
+      {
+        name: "AWS (EC2, S3, Lambda)",
+        proficiency: "advanced",
+        yearsOfExperience: 3,
+      },
+      { name: "Vercel", proficiency: "expert", yearsOfExperience: 3 },
+      { name: "GitHub Actions", proficiency: "advanced", yearsOfExperience: 2 },
+      {
+        name: "CI/CD Pipelines",
+        proficiency: "advanced",
+        yearsOfExperience: 3,
+      },
+      { name: "Linux/Unix", proficiency: "advanced", yearsOfExperience: 5 },
+    ],
+  },
+  {
+    category: "Additional Skills",
+    skills: [
+      {
+        name: "Performance Optimization",
+        proficiency: "expert",
+        yearsOfExperience: 4,
+      },
+      {
+        name: "Web Accessibility (WCAG)",
+        proficiency: "advanced",
+        yearsOfExperience: 3,
+      },
+      {
+        name: "SEO Best Practices",
+        proficiency: "advanced",
+        yearsOfExperience: 4,
+      },
+      { name: "Agile/Scrum", proficiency: "advanced", yearsOfExperience: 5 },
+      {
+        name: "Technical Writing",
+        proficiency: "advanced",
+        yearsOfExperience: 4,
+      },
     ],
   },
 ];
@@ -205,6 +247,41 @@ export const achievements: Achievement[] = [
     description: "Average training volume",
   },
 ];
+
+/**
+ * Professional Philosophy
+ * Core principles and approach to software development
+ */
+export const professionalPhilosophy = {
+  title: "My Engineering Philosophy",
+  principles: [
+    {
+      title: "User-Centric Design",
+      description:
+        "Every technical decision should ultimately serve the end user. Performance optimization, accessibility, and intuitive UX are not optional—they're fundamental to quality software.",
+    },
+    {
+      title: "Code as Communication",
+      description:
+        "Code is read far more than it's written. I prioritize clarity, maintainability, and comprehensive documentation. Well-named variables and functions are better than clever shortcuts.",
+    },
+    {
+      title: "Data-Driven Iteration",
+      description:
+        "Informed decisions beat gut instincts. Whether it's A/B testing features or profiling performance bottlenecks, I let metrics guide the path to continuous improvement.",
+    },
+    {
+      title: "Embrace Constraints",
+      description:
+        "Limitations breed creativity. Building this portfolio with zero runtime database forced elegant architectural decisions that resulted in blazing fast performance and zero hosting costs.",
+    },
+    {
+      title: "Systematic Excellence",
+      description:
+        "Excellence is a habit, not an accident. From automated testing to code reviews, I build systems that make quality the default outcome, not a heroic effort.",
+    },
+  ],
+} as const;
 
 /**
  * Featured Videos Configuration

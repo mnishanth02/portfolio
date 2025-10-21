@@ -19,7 +19,7 @@ export default function BlogLayout({ children }: { children: ReactNode }) {
 
             {/* Breadcrumb Navigation */ }
             <div className="border-b bg-muted/50">
-                <div className="container py-4">
+                <div className="container mx-auto py-4">
                     <Breadcrumb>
                         <BreadcrumbList>
                             <BreadcrumbItem>

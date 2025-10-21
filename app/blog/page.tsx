@@ -40,8 +40,8 @@ export default function BlogPage() {
     const tags = getAllTags();
 
     return (
-        <div className="min-h-screen py-20">
-            <div className="container">
+        <div className="min-h-screen py-10">
+            <div className="container mx-auto max-w-7xl">
                 {/* Page Header */ }
                 <div className="mb-12 text-center">
                     <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">

@@ -4,7 +4,7 @@ import { getPostBySlug, getAllPosts } from "@/lib/mdx";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
+import { SafeImage } from "@/components/ui/safe-image";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/constants";
 import { Separator } from "@/components/ui/separator";
@@ -122,8 +122,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 dangerouslySetInnerHTML={ { __html: JSON.stringify(blogPostingSchema) } }
             />
 
-            <article className="py-12">
-                <div className="container max-w-7xl">
+            <article className="py-8">
+                <div className="container mx-auto max-w-7xl">
                     {/* Back Button */ }
                     <Button variant="ghost" size="sm" className="mb-8" asChild>
                         <Link href="/blog">
@@ -138,7 +138,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                             {/* Featured Image */ }
                             { post.image && (
                                 <div className="relative mb-8 aspect-video w-full overflow-hidden rounded-lg border">
-                                    <Image
+                                    <SafeImage
                                         src={ `/images/blog/${post.image}` }
                                         alt={ post.title }
                                         fill
