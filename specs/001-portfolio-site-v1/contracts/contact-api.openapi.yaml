@@ -1,0 +1,200 @@
+openapi: 3.0.3
+info:
+  title: Portfolio Contact API
+  description: API for handling contact form submissions on personal portfolio website
+  version: 1.0.0
+  contact:
+    name: API Support
+    email: your-email@example.com
+
+servers:
+  - url: https://yourportfolio.com/api
+    description: Production server
+  - url: http://localhost:3000/api
+    description: Local development server
+
+paths:
+  /contact:
+    post:
+      summary: Submit contact form
+      description: |
+        Submits a contact form message which is forwarded to the site owner's email
+        via Resend API. Includes honeypot spam protection. No data is persisted to
+        a database per Constitution Principle I (zero-database constraint).
+      operationId: submitContactForm
+      tags:
+        - Contact
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactSubmission'
+            examples:
+              validSubmission:
+                summary: Valid contact form submission
+                value:
+                  name: "Jane Smith"
+                  email: "jane@example.com"
+                  message: "Hi! I'm interested in discussing a potential collaboration on a new project. Would you be available for a call next week?"
+                  website: ""
+              spamSubmission:
+                summary: Spam submission (honeypot filled)
+                value:
+                  name: "Spammer"
+                  email: "spam@example.com"
+                  message: "Check out my website for great deals!"
+                  website: "https://spam.com"
+      responses:
+        '200':
+          description: Contact form submitted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+              examples:
+                success:
+                  summary: Successful submission
+                  value:
+                    success: true
+                    message: "Message sent successfully. We'll respond within 24 hours."
+        '400':
+          description: Invalid request or spam detected
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                validationError:
+                  summary: Validation error
+                  value:
+                    success: false
+                    error: "Validation failed"
+                    details:
+                      - field: "message"
+                        message: "Message must be at least 20 characters"
+                spamDetected:
+                  summary: Honeypot spam detection
+                  value:
+                    success: false
+                    error: "Spam detected"
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                rateLimitExceeded:
+                  summary: Too many requests
+                  value:
+                    success: false
+                    error: "Rate limit exceeded. Please try again in 1 minute."
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                serverError:
+                  summary: Server error (e.g., Resend API failure)
+                  value:
+                    success: false
+                    error: "Failed to send message. Please try again later."
+
+components:
+  schemas:
+    ContactSubmission:
+      type: object
+      required:
+        - name
+        - email
+        - message
+        - website
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+          description: Sender's full name
+          example: "Jane Smith"
+        email:
+          type: string
+          format: email
+          maxLength: 200
+          description: Sender's email address (RFC 5322 compliant)
+          example: "jane@example.com"
+        message:
+          type: string
+          minLength: 20
+          maxLength: 5000
+          description: Message content (minimum 20 characters to prevent spam)
+          example: "Hi! I'm interested in discussing a potential collaboration..."
+        website:
+          type: string
+          maxLength: 0
+          description: |
+            Honeypot field for spam protection. Must be empty. Hidden from users
+            via CSS. Bots typically fill all form fields, triggering spam detection.
+          example: ""
+
+    SuccessResponse:
+      type: object
+      required:
+        - success
+        - message
+      properties:
+        success:
+          type: boolean
+          enum: [true]
+          description: Indicates successful submission
+        message:
+          type: string
+          description: Success message displayed to user
+          example: "Message sent successfully. We'll respond within 24 hours."
+
+    ErrorResponse:
+      type: object
+      required:
+        - success
+        - error
+      properties:
+        success:
+          type: boolean
+          enum: [false]
+          description: Indicates failed submission
+        error:
+          type: string
+          description: Error message explaining the failure
+          example: "Validation failed"
+        details:
+          type: array
+          description: Detailed validation errors (optional)
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: Field name that failed validation
+                example: "email"
+              message:
+                type: string
+                description: Validation error message
+                example: "Valid email required"
+
+  securitySchemes:
+    rateLimiting:
+      type: apiKey
+      in: header
+      name: X-RateLimit
+      description: |
+        IP-based rate limiting: 1 submission per minute per IP address.
+        Prevents spam and abuse. Rate limit headers returned in response.
+
+security:
+  - rateLimiting: []
+
+tags:
+  - name: Contact
+    description: Contact form submission endpoints

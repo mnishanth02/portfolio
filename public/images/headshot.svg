@@ -1,0 +1,8 @@
+<svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="800" fill="#1a1a1a"/>
+  <circle cx="400" cy="300" r="120" fill="#333"/>
+  <circle cx="370" cy="280" r="15" fill="#666"/>
+  <circle cx="430" cy="280" r="15" fill="#666"/>
+  <path d="M 350 350 Q 400 380 450 350" stroke="#666" stroke-width="3" fill="none"/>
+  <text x="400" y="700" font-family="Arial" font-size="24" fill="#666" text-anchor="middle">Professional Headshot</text>
+</svg>

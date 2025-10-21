@@ -1,0 +1,246 @@
+---
+title: "Building Type-Safe APIs with Next.js 15 and Zod"
+description: "Learn how to build fully type-safe APIs in Next.js 15 using Zod for runtime validation and TypeScript for compile-time safety. Includes practical examples and best practices."
+publishedAt: "2025-09-20"
+category: "technical"
+tags: ["nextjs", "typescript", "zod", "api", "type-safety"]
+image: "nextjs-type-safe-apis.jpg"
+featured: true
+author: "Nishanth Murugan"
+---
+
+## Introduction
+
+Type safety is crucial for building robust web applications, but TypeScript alone only provides compile-time guarantees. When building APIs, we need runtime validation to ensure data integrity at system boundaries. This is where Zod shines - providing both runtime validation and automatic TypeScript type inference.
+
+In this article, I'll show you how I built a fully type-safe API layer for my portfolio using Next.js 15 Route Handlers and Zod schemas.
+
+## The Problem: API Boundaries Are Risky
+
+Consider a typical contact form API endpoint:
+
+```typescript
+// ❌ Unsafe: No runtime validation
+export async function POST(request: Request) {
+  const data = await request.json();
+
+  // What if data.email is undefined?
+  // What if data.message contains malicious content?
+  await sendEmail(data.email, data.message);
+
+  return Response.json({ success: true });
+}
+```
+
+This code has several issues:
+- No validation of input data structure
+- No type safety for the request body
+- No protection against malicious input
+- Runtime errors waiting to happen
+
+## The Solution: Zod + TypeScript
+
+Here's how I solved this using Zod for validation:
+
+```typescript
+import { z } from 'zod';
+
+// Define schema with validation rules
+export const contactSubmissionSchema = z.object({
+  name: z.string().min(2).max(100),
+  email: z.string().email(),
+  message: z.string().min(10).max(5000),
+  website: z.string().max(0).optional(), // Honeypot field
+});
+
+// Automatically infer TypeScript type
+export type ContactSubmission = z.infer<typeof contactSubmissionSchema>;
+```
+
+Now our API endpoint becomes type-safe:
+
+```typescript
+import { contactSubmissionSchema } from '@/lib/validations';
+
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+
+    // Validate and parse - throws if invalid
+    const validatedData = contactSubmissionSchema.parse(body);
+
+    // TypeScript now knows the exact shape!
+    await sendEmail({
+      to: siteConfig.author.email,
+      from: validatedData.email,
+      subject: `Portfolio Contact: ${validatedData.name}`,
+      html: validatedData.message,
+    });
+
+    return Response.json({ success: true });
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return Response.json(
+        { error: 'Invalid input', details: error.errors },
+        { status: 400 }
+      );
+    }
+
+    return Response.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
+  }
+}
+```
+
+## Advanced Patterns
+
+### 1. Reusable Schema Composition
+
+Zod schemas are composable, making it easy to build complex types:
+
+```typescript
+const baseProjectSchema = z.object({
+  id: z.string().regex(/^[a-z0-9-]+$/),
+  title: z.string().min(10).max(80),
+  description: z.string().min(50).max(200),
+});
+
+// Extend for detailed project pages
+export const projectDetailSchema = baseProjectSchema.extend({
+  problemStatement: z.string().optional(),
+  technicalApproach: z.string().optional(),
+  challenges: z.array(z.string()).optional(),
+  outcomes: z.array(z.string()).optional(),
+  metrics: z.object({
+    usersImpacted: z.number().optional(),
+    performanceImprovement: z.string().optional(),
+  }).optional(),
+});
+```
+
+### 2. Custom Validation Logic
+
+Add custom refinements for business logic:
+
+```typescript
+const blogPostSchema = z.object({
+  title: z.string().min(10).max(100),
+  publishedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  tags: z.array(z.string()).min(1).max(10),
+}).refine(
+  (data) => {
+    // Ensure published date is not in the future
+    const publishDate = new Date(data.publishedAt);
+    return publishDate <= new Date();
+  },
+  { message: "Published date cannot be in the future" }
+);
+```
+
+### 3. Form Integration with React Hook Form
+
+Combine Zod with React Hook Form for end-to-end type safety:
+
+```typescript
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+export function ContactForm() {
+  const form = useForm<ContactSubmission>({
+    resolver: zodResolver(contactSubmissionSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      message: '',
+    },
+  });
+
+  async function onSubmit(data: ContactSubmission) {
+    // data is fully validated and typed!
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      console.error('Submission failed:', error);
+    }
+  }
+
+  return (
+    <form onSubmit={form.handleSubmit(onSubmit)}>
+      {/* Form fields... */}
+    </form>
+  );
+}
+```
+
+## Performance Considerations
+
+Zod validation is fast, but consider these optimizations:
+
+1. **Parse vs SafeParse**: Use `safeParse()` when you want to handle errors gracefully without throwing
+2. **Lazy Schemas**: For recursive types, use `z.lazy()` to avoid circular references
+3. **Transform Data**: Use `.transform()` to normalize data during validation
+
+```typescript
+const emailSchema = z.string()
+  .email()
+  .transform(email => email.toLowerCase().trim());
+```
+
+## Testing Type-Safe APIs
+
+Testing becomes easier with Zod:
+
+```typescript
+import { describe, it, expect } from 'vitest';
+
+describe('contactSubmissionSchema', () => {
+  it('accepts valid submissions', () => {
+    const validData = {
+      name: 'John Doe',
+      email: 'john@example.com',
+      message: 'Hello, this is a test message!',
+    };
+
+    expect(() => contactSubmissionSchema.parse(validData)).not.toThrow();
+  });
+
+  it('rejects invalid emails', () => {
+    const invalidData = {
+      name: 'John Doe',
+      email: 'not-an-email',
+      message: 'Test message',
+    };
+
+    expect(() => contactSubmissionSchema.parse(invalidData)).toThrow();
+  });
+});
+```
+
+## Lessons Learned
+
+After implementing this pattern across my portfolio:
+
+1. **Validation at boundaries**: Always validate external input (API requests, environment variables, file uploads)
+2. **Single source of truth**: Define schemas once, use everywhere (frontend forms, API validation, database operations)
+3. **Error messages matter**: Customize Zod error messages for better UX
+4. **Type inference is magic**: Let Zod generate your TypeScript types automatically
+
+## Conclusion
+
+Combining Next.js 15 Route Handlers with Zod validation creates a robust, type-safe API layer that catches errors early and provides excellent developer experience. This approach has eliminated entire classes of bugs in my projects and made refactoring much safer.
+
+The pattern scales well from simple contact forms to complex multi-step workflows. I highly recommend adopting this approach for any Next.js project that handles user input.
+
+## Resources
+
+- [Zod Documentation](https://zod.dev)
+- [Next.js Route Handlers](https://nextjs.org/docs/app/building-your-application/routing/route-handlers)
+- [React Hook Form + Zod](https://react-hook-form.com/get-started#SchemaValidation)
+- [My portfolio source code](https://github.com/mnishanth02/portfolio)
