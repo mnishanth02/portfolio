@@ -19,12 +19,39 @@ function checkRateLimit(ip: string): boolean {
     return true;
   }
 
-  if (limit.count >= 1) {
-    return false;
-  }
+  // Already has an active rate limit
+  return false;
+}
 
-  limit.count++;
-  return true;
+/**
+ * Cleanup old rate limit entries to prevent memory leak
+ * Called periodically to remove expired entries
+ */
+function cleanupRateLimitMap() {
+  const now = Date.now();
+  for (const [ip, limit] of rateLimitMap.entries()) {
+    if (now > limit.resetTime) {
+      rateLimitMap.delete(ip);
+    }
+  }
+}
+
+// Cleanup rate limit map every 5 minutes
+setInterval(cleanupRateLimitMap, 5 * 60 * 1000);
+
+/**
+ * HTML escape function to prevent XSS
+ */
+function escapeHtml(text: string): string {
+  const htmlEscapeMap: Record<string, string> = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+    "/": "&#x2F;",
+  };
+  return text.replace(/[&<>"'/]/g, (char) => htmlEscapeMap[char] || char);
 }
 
 /**
@@ -34,16 +61,18 @@ function checkRateLimit(ip: string): boolean {
 export async function POST(request: NextRequest) {
   try {
     // Get client IP for rate limiting
+    // Extract first IP from x-forwarded-for header (can contain multiple IPs)
+    // Note: These headers can be spoofed; ensure deployment platform sets them correctly
     const ip =
-      request.headers.get("x-forwarded-for") ||
-      request.headers.get("x-real-ip") ||
+      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      request.headers.get("x-real-ip")?.trim() ||
       "unknown";
 
     // Check rate limit
     if (!checkRateLimit(ip)) {
       return NextResponse.json(
         { error: "Too many requests. Please try again in a minute." },
-        { status: 429 },
+        { status: 429, headers: { "Retry-After": "60" } },
       );
     }
 
@@ -81,10 +110,10 @@ export async function POST(request: NextRequest) {
       text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
       html: `
 				<h2>New Contact Form Submission</h2>
-				<p><strong>Name:</strong> ${name}</p>
-				<p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+				<p><strong>Name:</strong> ${escapeHtml(name)}</p>
+				<p><strong>Email:</strong> <a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></p>
 				<h3>Message:</h3>
-				<p>${message.replace(/\n/g, "<br>")}</p>
+				<p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>
 			`,
     });
 

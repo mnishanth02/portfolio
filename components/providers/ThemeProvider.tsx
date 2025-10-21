@@ -8,14 +8,14 @@ import type { PropsWithChildren } from "react";
  * Wraps the application with next-themes for dark mode support
  */
 export function ThemeProvider({ children }: PropsWithChildren) {
-    return (
-        <NextThemesProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-        >
-            { children }
-        </NextThemesProvider>
-    );
+  return (
+    <NextThemesProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
+      {children}
+    </NextThemesProvider>
+  );
 }

@@ -19,7 +19,7 @@ export interface NavLink {
 export interface SocialLink {
   name: string;
   url: string;
-  icon: string; // lucide-react icon name
+  icon: React.ComponentType<{ className?: string }>; // lucide-react icon component
 }
 
 /**

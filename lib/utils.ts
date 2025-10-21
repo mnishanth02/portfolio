@@ -23,6 +23,12 @@ export function formatDate(
 ): string {
   const date = new Date(dateString);
 
+  // Validate date
+  if (Number.isNaN(date.getTime())) {
+    console.error(`Invalid date string: ${dateString}`);
+    return "Invalid date";
+  }
+
   if (format === "short") {
     return date.toLocaleDateString("en-US", {
       month: "short",

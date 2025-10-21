@@ -1,3 +1,11 @@
+import {
+  Activity,
+  Github,
+  Linkedin,
+  Mail,
+  Twitter,
+  Youtube,
+} from "lucide-react";
 import type {
   Achievement,
   FeaturedVideo,
@@ -70,32 +78,32 @@ export const socialLinks: SocialLink[] = [
   {
     name: "GitHub",
     url: "https://github.com/mnishanth02/portfolio",
-    icon: "Github",
+    icon: Github,
   },
   {
     name: "LinkedIn",
     url: "https://linkedin.com/in/nishanthmurugan",
-    icon: "Linkedin",
+    icon: Linkedin,
   },
   {
     name: "Twitter",
     url: "https://twitter.com/mnishanth02",
-    icon: "Twitter",
+    icon: Twitter,
   },
   {
     name: "Strava",
     url: "https://www.strava.com/athletes/11694245",
-    icon: "Activity",
+    icon: Activity,
   },
   {
     name: "YouTube",
     url: "https://www.youtube.com/@TheTechletee",
-    icon: "Youtube",
+    icon: Youtube,
   },
   {
     name: "Email",
     url: "mailto:nishanth.murugan@gmail.com",
-    icon: "Mail",
+    icon: Mail,
   },
 ];
 

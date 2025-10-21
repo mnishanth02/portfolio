@@ -428,10 +428,13 @@ The following features are explicitly **NOT** included in this specification and
 **Implementation Notes**:
 - Contact form API route: `app/api/contact/route.ts`
 - Use Resend SDK with TypeScript support
-- Environment variable: `NEXT_PUBLIC_RESEND_API_KEY` (requires signup at resend.com)
+- Environment variable: `RESEND_API_KEY` (server-side only, requires signup at resend.com)
 - Honeypot field: hidden `website` input field (spambots fill all fields)
 - Rate limiting: IP-based with 1 submission per minute per IP
-- Success response: 200 with confirmation message
+  - Returns HTTP 429 with `Retry-After: 60` header when limit exceeded
+  - Frontend displays inline error message with countdown timer
+  - Submit button disabled during rate limit period
+- Success response: 200 with confirmation message (SC-030)
 - Error handling: Graceful fallback to mailto: link if Resend fails
 
 ---

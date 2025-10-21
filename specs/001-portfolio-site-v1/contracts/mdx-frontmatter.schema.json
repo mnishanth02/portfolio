@@ -64,9 +64,13 @@
         },
         "image": {
           "type": "string",
-          "pattern": "^[a-z0-9-]+\\.(jpg|jpeg|png|webp)$",
+          "pattern": "^[a-zA-Z0-9._-]+\\.(jpg|jpeg|png|webp|JPG|JPEG|PNG|WEBP)$",
           "description": "Featured image filename (must exist in /public/images/blog/)",
-          "examples": ["marathon-training.jpg", "react-hooks.png"]
+          "examples": [
+            "marathon-training.jpg",
+            "react-hooks.png",
+            "Dashboard.PNG"
+          ]
         },
         "featured": {
           "type": "boolean",
@@ -168,9 +172,13 @@
         },
         "image": {
           "type": "string",
-          "pattern": "^[a-z0-9-]+\\.(jpg|jpeg|png|webp)$",
+          "pattern": "^[a-zA-Z0-9._-]+\\.(jpg|jpeg|png|webp|JPG|JPEG|PNG|WEBP)$",
           "description": "Project thumbnail image (must exist in /public/images/projects/)",
-          "examples": ["ecommerce-platform.jpg", "fitness-tracker.png"]
+          "examples": [
+            "ecommerce-platform.jpg",
+            "fitness-tracker.png",
+            "Dashboard.PNG"
+          ]
         },
         "demoUrl": {
           "type": "string",
@@ -181,9 +189,12 @@
         "githubUrl": {
           "type": "string",
           "format": "uri",
-          "pattern": "^https://github\\.com/[a-zA-Z0-9-]+/[a-zA-Z0-9-]+$",
+          "pattern": "^https://github\\.com/[a-zA-Z0-9._-]+/[a-zA-Z0-9._-]+/?$",
           "description": "GitHub repository URL (optional)",
-          "examples": ["https://github.com/username/project-name"]
+          "examples": [
+            "https://github.com/username/project-name",
+            "https://github.com/user_name/my.repo"
+          ]
         },
         "featured": {
           "type": "boolean",
@@ -274,10 +285,30 @@
               "examples": ["40% less code", "Reduced bundle size by 120KB"]
             }
           },
-          "additionalProperties": true
+          "additionalProperties": false
         }
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": { "status": { "const": "completed" } }
+          },
+          "then": {
+            "required": ["endDate"]
+          }
+        },
+        {
+          "if": {
+            "properties": { "status": { "const": "in-progress" } }
+          },
+          "then": {
+            "not": {
+              "required": ["endDate"]
+            }
+          }
+        }
+      ]
     }
   },
   "oneOf": [
