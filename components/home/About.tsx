@@ -1,14 +1,8 @@
-import { Download, Lightbulb, Trophy } from "lucide-react";
+import { Download, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { achievements, professionalPhilosophy } from "@/lib/constants";
-import { Skills } from "./Skills";
+import { Card, CardContent } from "@/components/ui/card";
+import { achievements } from "@/lib/constants";
+import { SkillsWrapper } from "./SkillsWrapper";
 import { Timeline } from "./Timeline";
 
 /**
@@ -52,31 +46,7 @@ export function About() {
         </div>
 
         {/* Skills Section */}
-        <Skills />
-
-        {/* Professional Philosophy */}
-        <div className="mt-16 mb-16">
-          <div className="flex items-center justify-center gap-3 mb-8">
-            <Lightbulb className="h-6 w-6 text-primary" />
-            <h3 className="text-2xl font-bold text-center">
-              {professionalPhilosophy.title}
-            </h3>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {professionalPhilosophy.principles.map((principle) => (
-              <Card key={principle.title}>
-                <CardHeader>
-                  <CardTitle className="text-lg">{principle.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-foreground/80">
-                    {principle.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
+        <SkillsWrapper />
 
         {/* Running Achievements */}
         <div className="mt-16 mb-16">
@@ -88,26 +58,31 @@ export function About() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {achievements.map((achievement) => (
-              <div
+              <Card
                 key={achievement.title}
-                className="bg-card rounded-lg p-6 text-center border shadow-sm hover:shadow-md transition-shadow"
+                className="text-center hover:shadow-md transition-shadow"
               >
-                <div className="text-3xl font-bold text-primary mb-2">
-                  {achievement.value}
-                </div>
-                <div className="font-semibold mb-1">{achievement.title}</div>
-                {achievement.description && (
-                  <div className="text-sm text-muted-foreground">
-                    {achievement.description}
+                <CardContent className="p-6">
+                  <div className="text-3xl font-bold text-primary mb-2">
+                    {achievement.value}
                   </div>
-                )}
-              </div>
+                  <div className="font-semibold mb-1">{achievement.title}</div>
+                  {achievement.description && (
+                    <div className="text-sm text-muted-foreground">
+                      {achievement.description}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
 
-        {/* Timeline */}
-        <Timeline />
+        {/* Dual Timeline - Career & Running */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+          <Timeline type="career" />
+          <Timeline type="running" />
+        </div>
 
         {/* Resume Download CTA */}
         <div className="text-center mt-12">

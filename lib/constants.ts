@@ -68,6 +68,11 @@ export const navigationLinks: NavLink[] = [
     label: "Contact",
     href: "#contact",
   },
+  {
+    label: "Philosophy",
+    href: "/about",
+    external: true,
+  },
 ];
 
 /**
@@ -193,21 +198,27 @@ export const skills: SkillCategory[] = [
 ];
 
 /**
- * Career Timeline
- * Professional milestones and key achievements
+ * Skills organized by category for tabbed interface
+ * Categorized for Frontend, Backend, DevOps, and Additional skills tabs
  */
-export const timeline: TimelineEvent[] = [
+export const skillCategories = {
+  frontend: skills[0].skills,
+  backend: skills[1].skills,
+  devops: skills[2].skills,
+  additional: skills[3].skills,
+} as const;
+
+/**
+ * Career Timeline
+ * Career Timeline
+ * Professional milestones and achievements
+ */
+export const careerMilestones: TimelineEvent[] = [
   {
     date: "2024-03",
     title: "Senior Fullstack Engineer",
     description: "Leading development of high-performance web applications",
     type: "career",
-  },
-  {
-    date: "2023-10",
-    title: "Boston Marathon Qualifier",
-    description: "Achieved BQ time of 3:15:42 at Chicago Marathon",
-    type: "achievement",
   },
   {
     date: "2022-06",
@@ -216,18 +227,40 @@ export const timeline: TimelineEvent[] = [
     type: "career",
   },
   {
-    date: "2021-09",
-    title: "First Marathon",
-    description: "Completed first marathon in 3:45:23",
-    type: "achievement",
-  },
-  {
     date: "2020-12",
     title: "Computer Science Degree",
     description: "B.S. in Computer Science with honors",
     type: "education",
   },
 ];
+
+/**
+ * Running Timeline
+ * Marathon and running achievements
+ */
+export const runningMilestones: TimelineEvent[] = [
+  {
+    date: "2023-10",
+    title: "Boston Marathon Qualifier",
+    description: "Achieved BQ time of 3:15:42 at Chicago Marathon",
+    type: "achievement",
+  },
+  {
+    date: "2021-09",
+    title: "First Marathon",
+    description: "Completed first marathon in 3:45:23",
+    type: "achievement",
+  },
+];
+
+/**
+ * @deprecated Use careerMilestones or runningMilestones instead
+ * Combined timeline - kept for backwards compatibility
+ */
+export const timeline: TimelineEvent[] = [
+  ...careerMilestones,
+  ...runningMilestones,
+].sort((a, b) => b.date.localeCompare(a.date));
 
 /**
  * Running Achievements
@@ -295,22 +328,51 @@ export const professionalPhilosophy = {
  * Featured Videos Configuration
  * YouTube video embeds for training content section
  */
+/**
+ * Featured Videos by Category
+ * YouTube videos showcasing running, software engineering, and public speaking
+ */
+export const videosByCategory = {
+  running: [
+    {
+      id: "dQw4w9WgXcQ1", // TODO: Replace with actual video ID
+      title: "Marathon Training Week in the Life",
+      description: "A week of 60-mile training during marathon prep",
+      category: "running" as const,
+    },
+    {
+      id: "dQw4w9WgXcQ2", // TODO: Replace with actual video ID
+      title: "Chicago Marathon Race Recap",
+      description: "Breaking down my BQ race strategy and execution",
+      category: "running" as const,
+    },
+  ],
+  coding: [
+    {
+      id: "dQw4w9WgXcQ3", // TODO: Replace with actual video ID
+      title: "Building Type-Safe APIs with Zod",
+      description: "Deep dive into runtime validation in TypeScript",
+      category: "coding" as const,
+    },
+  ],
+  talks: [
+    {
+      id: "dQw4w9WgXcQ4", // TODO: Replace with actual video ID
+      title: "Software Engineer's Guide to Marathon Training",
+      description: "Applying engineering principles to running performance",
+      category: "talks" as const,
+    },
+  ],
+};
+
+/**
+ * Legacy: All featured videos flattened (for backward compatibility)
+ * @deprecated Use videosByCategory instead for tabbed interface
+ */
 export const featuredVideos: FeaturedVideo[] = [
-  {
-    id: "dQw4w9WgXcQ1", // TODO: Replace with actual video ID
-    title: "Marathon Training Week in the Life",
-    description: "A week of 60-mile training during marathon prep",
-  },
-  {
-    id: "dQw4w9WgXcQ2", // TODO: Replace with actual video ID
-    title: "Chicago Marathon Race Recap",
-    description: "Breaking down my BQ race strategy and execution",
-  },
-  {
-    id: "dQw4w9WgXcQ3", // TODO: Replace with actual video ID
-    title: "Software Engineer's Guide to Marathon Training",
-    description: "Applying engineering principles to running performance",
-  },
+  ...videosByCategory.running,
+  ...videosByCategory.coding,
+  ...videosByCategory.talks,
 ];
 
 /**

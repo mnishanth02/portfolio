@@ -1,0 +1,32 @@
+{
+  "id": "training-tracker",
+  "title": "Marathon Training Tracker",
+  "description": "Personal project: Full-stack training log app with Strava integration and AI-powered workout recommendations.",
+  "longDescription": "Built a comprehensive marathon training tracker that integrates with Strava API, features custom workout planning, progress visualization, and AI-powered training recommendations. The app helps runners optimize their training with data-driven insights.",
+  "technologies": [
+    "Next.js",
+    "TypeScript",
+    "Prisma",
+    "PostgreSQL",
+    "OpenAI API",
+    "Strava API"
+  ],
+  "category": "fullstack",
+  "status": "in-progress",
+  "image": "/images/projects/training-tracker.png",
+  "demoUrl": "https://training.example.com",
+  "githubUrl": "https://github.com/username/training-tracker",
+  "featured": false,
+  "startDate": "2024-01",
+  "outcomes": [
+    "Strava API integration",
+    "AI-powered workout recommendations",
+    "Custom training plans",
+    "Progress visualization"
+  ],
+  "challenges": [
+    "Integrating with Strava OAuth",
+    "Building ML models for recommendations",
+    "Handling large datasets efficiently"
+  ]
+}

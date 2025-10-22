@@ -40,9 +40,10 @@ A high-performance, accessible portfolio website built with Next.js 15, showcasi
 
 ### Accessibility
 - ♿ **WCAG AA Compliant** - Semantic HTML and ARIA attributes
-- ⌨️ **Keyboard Navigation** - Full keyboard support with focus indicators
-- 🎨 **Color Contrast** - 4.5:1 minimum contrast ratios
-- 📱 **Touch Targets** - Minimum 44×44px tap targets
+- ⌨️ **Keyboard Navigation** - Full keyboard support with focus indicators and skip links
+- 🎨 **Color Contrast** - 4.5:1 minimum contrast ratios (OKLCH color space)
+- 📱 **Touch Targets** - Minimum 44×44px tap targets (all buttons h-11)
+- 🏗️ **Semantic Components** - All sections use shadcn/ui Card components consistently
 
 ### SEO & Discovery
 - 🔍 **Dynamic Sitemap** - Auto-generated from content

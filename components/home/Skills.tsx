@@ -4,7 +4,25 @@ import { skills } from "@/lib/constants";
 
 /**
  * Skills Component
- * Display technical skills organized by category with proficiency levels
+ *
+ * Displays technical skills organized by category (Frontend, Backend, DevOps, Additional)
+ * with proficiency levels and years of experience indicators.
+ *
+ * @component
+ * @returns {JSX.Element} A server-rendered skills section with categorized skill cards
+ *
+ * @example
+ * ```tsx
+ * <Skills />
+ * ```
+ *
+ * @remarks
+ * - Uses skills data from `lib/constants.ts`
+ * - Proficiency levels: expert (primary badge), advanced (secondary badge), intermediate/learning (outline badge)
+ * - Displays years of experience when available
+ * - Includes legend explaining proficiency levels
+ * - Responsive: 2-column grid on md+ breakpoints
+ * - Accessibility: Wrapped in semantic `<section>` with aria-label
  */
 export function Skills() {
   // Helper function to get badge variant based on proficiency
@@ -26,8 +44,10 @@ export function Skills() {
   };
 
   return (
-    <div className="mb-16">
-      <h3 className="text-2xl font-bold text-center mb-8">Technical Skills</h3>
+    <section className="py-16" aria-label="Technical Skills">
+      <h2 className="text-3xl font-bold tracking-tight text-center mb-8">
+        Technical Skills
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {skills.map((skillCategory) => (
           <Card key={skillCategory.category}>
@@ -78,6 +98,6 @@ export function Skills() {
           <span>Intermediate (1-2 years, growing proficiency)</span>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

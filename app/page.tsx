@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { About } from "@/components/home/About";
-import { Blog } from "@/components/home/Blog";
+import { Articles } from "@/components/home/Articles";
 import { Contact } from "@/components/home/Contact";
 import { Hero } from "@/components/home/Hero";
+import { PhilosophyCallout } from "@/components/home/PhilosophyCallout";
 import { Projects } from "@/components/home/Projects";
-import { Videos } from "@/components/home/Videos";
+import { VideosWrapper } from "@/components/home/VideosWrapper";
 import { Footer } from "@/components/shared/Footer";
 import { Navigation } from "@/components/shared/Navigation";
 import { siteConfig, socialLinks } from "@/lib/constants";
@@ -103,9 +104,10 @@ export default function Home() {
           <Hero />
           <About />
           <Projects />
-          <Blog />
-          <Videos />
+          <Articles />
+          <VideosWrapper />
           <Contact />
+          <PhilosophyCallout />
         </main>
         <Footer />
       </div>

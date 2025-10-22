@@ -65,4 +65,5 @@ export interface FeaturedVideo {
   id: string; // YouTube video ID
   title: string;
   description?: string;
+  category: "running" | "coding" | "talks";
 }

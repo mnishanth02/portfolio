@@ -1,0 +1,33 @@
+{
+  "id": "analytics-dashboard",
+  "title": "Real-time Analytics Dashboard",
+  "description": "Built scalable analytics platform processing 1M+ events daily with sub-100ms query response times.",
+  "longDescription": "Designed and implemented a real-time analytics dashboard for enterprise clients, handling over 1 million events per day. The system features custom data pipelines, interactive visualizations, and advanced filtering capabilities with sub-100ms query performance.",
+  "technologies": [
+    "React",
+    "TypeScript",
+    "Node.js",
+    "PostgreSQL",
+    "Redis",
+    "D3.js"
+  ],
+  "category": "fullstack",
+  "status": "completed",
+  "image": "/images/projects/analytics-dashboard.png",
+  "demoUrl": "https://analytics-demo.example.com",
+  "githubUrl": "https://github.com/username/analytics-dashboard",
+  "featured": false,
+  "startDate": "2023-01",
+  "endDate": "2023-05",
+  "outcomes": [
+    "Processes 1M+ events daily",
+    "Sub-100ms query response time",
+    "Custom data visualization engine",
+    "Real-time data updates"
+  ],
+  "challenges": [
+    "Optimizing query performance at scale",
+    "Building real-time data pipelines",
+    "Creating intuitive UX for complex data"
+  ]
+}

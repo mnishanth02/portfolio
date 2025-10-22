@@ -1,0 +1,34 @@
+{
+  "id": "ecommerce-platform",
+  "title": "E-commerce Platform Redesign",
+  "description": "Led full-stack redesign of e-commerce platform, improving checkout conversion by 32% and reducing page load time by 58%.",
+  "longDescription": "Spearheaded a complete architectural overhaul of a legacy e-commerce platform serving 50K+ daily users. Implemented React Server Components for improved performance, integrated Stripe for secure payments, and built a custom CMS for product management. The redesign resulted in a 32% increase in checkout conversion rate and 58% reduction in page load time.",
+  "technologies": [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Node.js",
+    "PostgreSQL",
+    "Stripe",
+    "AWS"
+  ],
+  "category": "fullstack",
+  "status": "completed",
+  "image": "/images/projects/ecommerce-platform.png",
+  "demoUrl": "https://demo.example.com",
+  "githubUrl": "https://github.com/username/ecommerce-platform",
+  "featured": true,
+  "startDate": "2023-06",
+  "endDate": "2024-03",
+  "outcomes": [
+    "Increased checkout conversion by 32%",
+    "Reduced page load time by 58%",
+    "Implemented server-side rendering for SEO",
+    "Built custom product CMS"
+  ],
+  "challenges": [
+    "Migrating from legacy monolith to modern architecture",
+    "Maintaining 100% uptime during transition",
+    "Integrating with existing payment systems"
+  ]
+}

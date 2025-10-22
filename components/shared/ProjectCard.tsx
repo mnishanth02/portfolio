@@ -17,21 +17,53 @@ import { ProjectModal } from "./ProjectModal";
 
 interface ProjectCardProps {
   project: Project;
+  featured?: boolean;
 }
 
 /**
  * ProjectCard Component
- * Individual project card with thumbnail, details, and links
+ *
+ * Individual project card with thumbnail, details, and links.
+ * Supports a featured variant with larger image and enhanced styling.
+ *
+ * @component
+ * @param {ProjectCardProps} props - Component props
+ * @param {Project} props.project - Project data object
+ * @param {boolean} [props.featured=false] - Whether to render as featured variant (larger size)
+ * @returns {JSX.Element} Project card with modal
+ *
+ * @example
+ * ```tsx
+ * // Regular project card
+ * <ProjectCard project={project} />
+ *
+ * // Featured project card (larger)
+ * <ProjectCard project={project} featured={true} />
+ * ```
+ *
+ * @remarks
+ * - Featured variant: Larger image (h-64 vs h-48), more visible description (line-clamp-4 vs line-clamp-3)
+ * - Regular variant: Compact card for grid layout
+ * - Both variants: Hover effects, Quick View modal, CTA buttons
+ * - Click anywhere on card to open detailed modal
  */
-export function ProjectCard({ project }: ProjectCardProps) {
+export function ProjectCard({ project, featured = false }: ProjectCardProps) {
   const [showModal, setShowModal] = useState(false);
+
+  // Dynamic classes based on featured status
+  const imageHeight = featured ? "h-64" : "h-48";
+  const titleSize = featured ? "text-2xl" : "text-xl";
+  const descriptionClamp = featured ? "line-clamp-4" : "line-clamp-3";
+  const techCount = featured ? 6 : 4;
 
   return (
     <>
       <Card className="group hover:shadow-lg transition-all duration-300 flex flex-col h-full">
         <CardHeader className="p-0">
           {/* Project Thumbnail */}
-          <div className="relative w-full h-48 overflow-hidden rounded-t-lg bg-muted">
+          <div
+            className={`relative w-full ${imageHeight} overflow-hidden rounded-t-lg bg-muted`}
+          >
             <SafeImage
               src={`/images/projects/${project.image}`}
               alt={project.title}
@@ -54,24 +86,35 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </CardHeader>
 
         <CardContent className="flex-1 pt-6">
+          {/* Featured Badge */}
+          {featured && (
+            <Badge variant="default" className="mb-3">
+              Featured
+            </Badge>
+          )}
+
           {/* Title and Description */}
-          <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+          <h3
+            className={`${titleSize} font-semibold mb-2 group-hover:text-primary transition-colors`}
+          >
             {project.title}
           </h3>
-          <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
+          <p
+            className={`text-muted-foreground text-sm mb-4 ${descriptionClamp}`}
+          >
             {project.description}
           </p>
 
           {/* Technologies */}
           <div className="flex flex-wrap gap-2">
-            {project.technologies.slice(0, 4).map((tech) => (
+            {project.technologies.slice(0, techCount).map((tech) => (
               <Badge key={tech} variant="secondary" className="text-xs">
                 {tech}
               </Badge>
             ))}
-            {project.technologies.length > 4 && (
+            {project.technologies.length > techCount && (
               <Badge variant="outline" className="text-xs">
-                +{project.technologies.length - 4} more
+                +{project.technologies.length - techCount} more
               </Badge>
             )}
           </div>
